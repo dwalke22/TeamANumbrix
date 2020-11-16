@@ -16,6 +16,13 @@
         <TextBox x:Name="cell5" HorizontalAlignment="Left" Margin="405,240,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell6" HorizontalAlignment="Left" Margin="470,240,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell7" HorizontalAlignment="Left" Margin="535,240,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
-
+        <TextBox x:Name="cell8" HorizontalAlignment="Left" Margin="80,305,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
+        <TextBox x:Name="cell9" HorizontalAlignment="Left" Margin="145,305,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
+        <TextBox x:Name="cell10" HorizontalAlignment="Left" Margin="210,305,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
+        <TextBox x:Name="cell11" HorizontalAlignment="Left" Margin="275,305,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
+        <TextBox x:Name="cell12" HorizontalAlignment="Left" Margin="340,305,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
+        <TextBox x:Name="cell13" HorizontalAlignment="Left" Margin="405,305,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
+        <TextBox x:Name="cell14" HorizontalAlignment="Left" Margin="470,305,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
+        <TextBox x:Name="cell15" HorizontalAlignment="Left" Margin="535,305,0,0" Text="64" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
     </Grid>
 </Page>
