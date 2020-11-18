@@ -118,9 +118,9 @@ namespace TeamANumbrix.Utility
             var eastCells = new List<Cell>();
 
             const int cellRowSize = PuzzleDimensionSize - 1;
-            const int startingPower = 2;
+            const int startingMultiplicity = 2;
 
-            for (var i = startingPower; i <= cellRowSize; i++)
+            for (var i = startingMultiplicity; i <= cellRowSize; i++)
             {
                 var currentPosition = PuzzleDimensionSize * i;
                 var cell = new Cell(currentPosition, 0, true, true, false, true);
@@ -135,9 +135,9 @@ namespace TeamANumbrix.Utility
             var westCells = new List<Cell>();
 
             const int cellRowSize = PuzzleDimensionSize - 2;
-            const int startingPower = 1;
+            const int startingMultiplicity = 1;
 
-            for (var i = startingPower; i <= cellRowSize; i++)
+            for (var i = startingMultiplicity; i <= cellRowSize; i++)
             {
                 var currentPosition = PuzzleDimensionSize * i + 1;
                 var cell = new Cell(currentPosition, 0, true, true, true, false);
