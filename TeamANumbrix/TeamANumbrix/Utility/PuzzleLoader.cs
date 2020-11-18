@@ -21,6 +21,11 @@ namespace TeamANumbrix.Utility
         /// </value>
         public Dictionary<string, Puzzle> Puzzles { get; set; }
 
+        /// <summary>
+        /// The puzzle dimension size
+        /// </summary>
+        public const int PuzzleDimensionSize = 8;
+
         public PuzzleLoader()
         {
             this.Puzzles = new Dictionary<string, Puzzle>();
@@ -82,7 +87,7 @@ namespace TeamANumbrix.Utility
 
         private Puzzle createPuzzle(IReadOnlyList<string> stats)
         {
-            Puzzle grid = new Puzzle();
+            Puzzle grid = new Puzzle(PuzzleDimensionSize);
 
             return grid;
         }

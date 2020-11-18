@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using testPuzzle.Model;
 
 namespace TeamANumbrix.Model
 {
@@ -21,7 +20,7 @@ namespace TeamANumbrix.Model
         /// <value>
         /// The cells.
         /// </value>
-        private IList<Cell> Cells { get; }
+        private ICollection<Cell> Cells { get; }
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"></see>.
@@ -29,13 +28,30 @@ namespace TeamANumbrix.Model
         public int Count => this.Cells.Count;
 
         /// <summary>
+        /// Gets or sets the size of the dimension.
+        /// </summary>
+        /// <value>
+        /// The size of the dimension.
+        /// </value>
+        public int DimensionSize { get; set; }
+
+        /// <summary>
         /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only.
         /// </summary>
         public bool IsReadOnly => true;
 
-        public Puzzle()
+        /// <summary>
+        /// Gets the indexed cells.
+        /// </summary>
+        /// <value>
+        /// The indexed cells.
+        /// </value>
+        public List<Cell> IndexedCells => this.Cells.ToList();
+
+        public Puzzle(int DimensionSize)
         {
             this.Cells = new Collection<Cell>();
+            this.DimensionSize = DimensionSize;
         }
 
         /// <summary>

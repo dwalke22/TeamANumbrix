@@ -41,7 +41,7 @@ namespace TeamANumbrix.Utility
         /// </returns>
         public static Puzzle CreateBlankPuzzle()
         {
-            var puzzle = new Puzzle();
+            var puzzle = new Puzzle(PuzzleDimensionSize);
 
             var cornerCells = createCornerCells();
             var northEdgeCells = createNorthEdgeCells();
@@ -64,7 +64,7 @@ namespace TeamANumbrix.Utility
 
         private static Puzzle orderPuzzle(Puzzle puzzle)
         {
-            var sortedPuzzle = new Puzzle();
+            var sortedPuzzle = new Puzzle(PuzzleDimensionSize);
 
             var puzzleList = puzzle.ToList();
             var comparer = new LambdaComparer<Cell>((x, y) => x.Position - y.Position);
