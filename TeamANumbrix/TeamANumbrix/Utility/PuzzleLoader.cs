@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using testPuzzle.Model;
+using TeamANumbrix.Model;
 
 namespace TeamANumbrix.Utility
 {

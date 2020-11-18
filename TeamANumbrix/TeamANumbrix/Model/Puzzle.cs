@@ -5,13 +5,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using testPuzzle.Model;
 
-namespace testPuzzle.Model
+namespace TeamANumbrix.Model
 {
     /// <summary>
     /// The grid class
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.ICollection{testPuzzle.Model.Cell}" />
+    /// <seealso cref="Cell" />
     public class Puzzle : ICollection<Cell>
     {
         /// <summary>
