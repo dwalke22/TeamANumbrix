@@ -121,6 +121,9 @@
     </Compile>
     <Compile Include="Model\Cell.cs" />
     <Compile Include="Model\Puzzle.cs" />
+    <Compile Include="Utility\GeneralComparer.cs" />
+    <Compile Include="Utility\PuzzleCreator.cs" />
+    <Compile Include="Utility\PuzzleLoader.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -165,9 +168,7 @@
       <Version>4.3.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utility\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
