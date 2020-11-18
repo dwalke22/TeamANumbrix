@@ -148,5 +148,23 @@ namespace testPuzzle.Model
             }
         }
 
+        /// <summary>
+        /// Removes all.
+        /// </summary>
+        /// <param name="cells">The cells.</param>
+        /// <exception cref="NullReferenceException">Cells cannot be null</exception>
+        public void RemoveAll(IEnumerable<Cell> cells)
+        {
+            if (cells == null)
+            {
+                throw new NullReferenceException("Cells cannot be null");
+            }
+
+            foreach (var currentCell in cells)
+            {
+                this.Cells.Remove(currentCell);
+            }
+        }
+
     }
 }

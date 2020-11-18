@@ -56,7 +56,22 @@ namespace TeamANumbrix.Utility
             puzzle.AddAll(westEdgeCells);
             puzzle.AddAll(middleCells);
 
+            orderPuzzle(puzzle);
+
             return puzzle;
+        }
+
+        private static Puzzle orderPuzzle(Puzzle puzzle)
+        {
+            var sortedPuzzle = new Puzzle();
+
+            var puzzleList = puzzle.ToList();
+            var comparer = new LambdaComparer<Cell>((x, y) => x.Position - y.Position);
+            puzzleList.Sort(comparer);
+
+            sortedPuzzle.AddAll(puzzleList);
+
+            return sortedPuzzle;
         }
 
         private static IEnumerable<Cell> createCornerCells()
