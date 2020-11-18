@@ -16,9 +16,9 @@ namespace TeamANumbrix.Utility
             this.Puzzle = puzzle;
         }
 
-        public Boolean SolvePuzzle()
+        public bool SolvePuzzle()
         {
-            var isSolved = false;
+            var isSolved = true;
             var cells = this.Puzzle.ToList();
             var counterSize = this.Puzzle.DimensionSize * this.Puzzle.DimensionSize - 1;
 
@@ -27,8 +27,11 @@ namespace TeamANumbrix.Utility
             for (var i = 0; i < counterSize; i++)
             {
                 var nextPosition = this.findNextPosition(firstPosition);
+                if (nextPosition == 0)
+                {
+                    isSolved = false;
+                }
                 firstPosition = cells[nextPosition];
-
             }
 
             return isSolved;
