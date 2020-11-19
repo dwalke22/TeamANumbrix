@@ -76,7 +76,7 @@ namespace TeamANumbrix.Utility
             return puzzle;
         }
 
-        private static Puzzle orderPuzzle(Puzzle puzzle)
+        public static Puzzle orderPuzzle(Puzzle puzzle)
         {
             var sortedPuzzle = new Puzzle(PuzzleDimensionSize);
 

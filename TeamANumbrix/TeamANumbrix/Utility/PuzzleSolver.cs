@@ -43,7 +43,7 @@ namespace TeamANumbrix.Utility
             return isSolved;
         }
 
-        private Cell findPositionOne(List<Cell> cells)
+        private Cell findPositionOne(IEnumerable<Cell> cells)
         {
             Cell positionOne = null;
             foreach (var currentCell in cells)
