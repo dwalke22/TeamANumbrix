@@ -32,6 +32,11 @@ namespace TeamANumbrix.View
 
             var summary = string.Empty;
 
+            var checkWin = new PuzzleSolver(puzzle);
+            var isWon = checkWin.SolvePuzzle();
+            summary += isWon;
+            summary += Environment.NewLine;
+
             foreach (var currentCell in puzzle)
             {
                 summary += currentCell.ToString();

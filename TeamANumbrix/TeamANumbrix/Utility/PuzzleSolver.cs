@@ -20,7 +20,8 @@ namespace TeamANumbrix.Utility
         {
             var isSolved = true;
             var cells = this.Puzzle.ToList();
-            var counterSize = this.Puzzle.DimensionSize * this.Puzzle.DimensionSize - 1;
+            var counterSize = this.Puzzle.DimensionSize * this.Puzzle.DimensionSize;
+            var checkWinCounter = 0;
 
             var firstPosition = this.findPositionOne(cells);
 
@@ -29,9 +30,14 @@ namespace TeamANumbrix.Utility
                 var nextPosition = this.findNextPosition(firstPosition);
                 if (nextPosition == 0)
                 {
-                    isSolved = false;
+                    return false;
                 }
-                firstPosition = cells[nextPosition];
+                firstPosition = cells[nextPosition-1];
+                checkWinCounter++;
+                if (checkWinCounter == counterSize - 1)
+                {
+                    return true;
+                }
             }
 
             return isSolved;
@@ -110,7 +116,7 @@ namespace TeamANumbrix.Utility
             var isNextPositionSouth = false;
 
             var currentPosition = cell.Position;
-            var southPositionIndex = currentPosition - this.Puzzle.DimensionSize - 1;
+            var southPositionIndex = currentPosition + this.Puzzle.DimensionSize - 1;
 
             var southCell = this.Puzzle.IndexedCells[southPositionIndex];
 
@@ -127,7 +133,7 @@ namespace TeamANumbrix.Utility
             var isNextPositionEast = false;
 
             var currentPosition = cell.Position;
-            var eastPositionIndex = currentPosition - this.Puzzle.DimensionSize - 1;
+            var eastPositionIndex = currentPosition;
 
             var eastCell = this.Puzzle.IndexedCells[eastPositionIndex];
 
@@ -144,9 +150,9 @@ namespace TeamANumbrix.Utility
             var isNextPositionWest = false;
 
             var currentPosition = cell.Position;
-            var westPositionIndex = currentPosition - this.Puzzle.DimensionSize - 1;
+            var westPositionIndex = currentPosition - 1;
 
-            var westCell = this.Puzzle.IndexedCells[westPositionIndex];
+            var westCell = this.Puzzle.IndexedCells[westPositionIndex - 1];
 
             if (westCell.Value == cell.Value + 1)
             {

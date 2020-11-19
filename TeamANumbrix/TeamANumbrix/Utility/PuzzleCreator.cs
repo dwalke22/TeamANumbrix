@@ -33,7 +33,7 @@ namespace TeamANumbrix.Utility
     
             foreach (var unmodifiableCell in stats)
             {
-                var cellData = unmodifiableCell.Split(':');
+                var cellData = unmodifiableCell.Split('|');
 
                 var position = int.Parse(cellData[0]);
                 var value = int.Parse(cellData[1]);
@@ -95,8 +95,9 @@ namespace TeamANumbrix.Utility
 
             const int topLeftPosition = 1;
             const int topRightPosition = PuzzleDimensionSize;
-            const int bottomLeftPosition = PuzzleDimensionSize * PuzzleDimensionSize;
-            const int bottomRightPosition = bottomLeftPosition - PuzzleDimensionSize;
+            const int bottomRightPosition = PuzzleDimensionSize * PuzzleDimensionSize;
+            const int bottomLeftPosition = bottomRightPosition - PuzzleDimensionSize + 1;
+            
 
             var topLeftCell = new Cell(topLeftPosition, 0, false, true, true, false);
             var topRightCell = new Cell(topRightPosition, 0, false, true, false, true);
@@ -136,7 +137,7 @@ namespace TeamANumbrix.Utility
 
             for (var i = startingPosition; i <= maxRange; i++)
             {
-                var cell = new Cell(i, 0, false, true, true, true);
+                var cell = new Cell(i, 0, true, false, true, true);
                 southCells.Add(cell);
             }
 
