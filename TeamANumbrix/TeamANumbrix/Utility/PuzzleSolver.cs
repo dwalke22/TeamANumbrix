@@ -54,7 +54,6 @@ namespace TeamANumbrix.Utility
         private int findNextPosition(Cell currentCell)
         {
             var nextPosition = 0;
-            var cellValue = currentCell.Value;
             var cellPosition = currentCell.Position;
 
             if (currentCell.HasN)

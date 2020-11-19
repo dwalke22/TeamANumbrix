@@ -107,7 +107,7 @@ namespace TeamANumbrix.Model
         /// </returns>
         public override string ToString()
         {
-            return $"Cell has position : {this.Position}";
+            return $"Cell :: {this.Position} has value : {this.Value}";
         }
 
         /// <summary>
