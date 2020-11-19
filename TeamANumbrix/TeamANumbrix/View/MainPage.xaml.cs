@@ -34,7 +34,7 @@ namespace TeamANumbrix.View
 
         private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Puzzle puzzle = PuzzleLoader.createPuzzles();
+            Puzzle puzzle = PuzzleLoader.createFirstPuzzle();
 
             var summary = string.Empty;
 
@@ -84,6 +84,25 @@ namespace TeamANumbrix.View
 
 
             return cells;
+        }
+
+        private void handleModifiableCells()
+        {
+
+        }
+
+        public string getPositions(string[] values)
+        {
+            var positions = string.Empty;
+
+            foreach (var currentValue in values)
+            {
+                positions += currentValue[0];
+                positions += ",";
+
+            }
+
+            return positions;
         }
 
 
