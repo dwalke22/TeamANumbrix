@@ -62,7 +62,7 @@ namespace TeamANumbrix.Model
         /// <value>
         ///   <c>true</c> if this instance is changeable; otherwise, <c>false</c>.
         /// </value>
-        public bool isChangeable { get; set; }
+        public bool IsChangeable { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Cell"/> class.
@@ -96,7 +96,7 @@ namespace TeamANumbrix.Model
             this.HasS = hasS;
             this.HasE = hasE;
             this.HasW = hasW;
-            this.isChangeable = true;
+            this.IsChangeable = true;
         }
 
         /// <summary>

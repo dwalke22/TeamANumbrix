@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using Windows.Storage;
-using Windows.Storage.Pickers;
 using TeamANumbrix.Model;
 
 namespace TeamANumbrix.Utility
@@ -63,11 +59,9 @@ namespace TeamANumbrix.Utility
                     {
                         this.createPuzzle(stats);
                     }
-                    catch (FormatException e)
+                    catch (Exception e)
                     {
-                    }
-                    catch (Exception)
-                    {
+                        Console.WriteLine(e.Message);
                     }
                 }
             }

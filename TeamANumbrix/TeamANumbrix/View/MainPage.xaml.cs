@@ -16,9 +16,9 @@ namespace TeamANumbrix.View
     /// </summary>
     public sealed partial class MainPage
     {
-        public const int ApplicationHeight = 750;
+        public const int ApplicationHeight = 800;
 
-        public const int ApplicationWidth = 600;
+        public const int ApplicationWidth = 1000;
 
         public const string Comma = ",";
 
@@ -30,6 +30,12 @@ namespace TeamANumbrix.View
             ApplicationView.PreferredLaunchViewSize = new Size { Width = ApplicationWidth, Height = ApplicationHeight };
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(ApplicationWidth, ApplicationHeight));
+            this.loadFirstPuzzle();
+        }
+
+        private void loadFirstPuzzle()
+        {
+            
         }
 
         private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
