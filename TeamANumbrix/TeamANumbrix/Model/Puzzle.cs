@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace TeamANumbrix.Model
 {
@@ -48,10 +47,10 @@ namespace TeamANumbrix.Model
         /// </value>
         public List<Cell> IndexedCells => this.Cells.ToList();
 
-        public Puzzle(int DimensionSize)
+        public Puzzle(int dimensionSize)
         {
             this.Cells = new Collection<Cell>();
-            this.DimensionSize = DimensionSize;
+            this.DimensionSize = dimensionSize;
         }
 
         /// <summary>

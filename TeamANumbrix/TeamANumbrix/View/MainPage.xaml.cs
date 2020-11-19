@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using TeamANumbrix.Model;
 using TeamANumbrix.Utility;
+using TextBox = Windows.UI.Xaml.Controls.TextBox;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -23,6 +26,8 @@ namespace TeamANumbrix.View
         public const string Comma = ",";
 
         public const int PuzzleDimensionSize = 8;
+
+        private List<TextBox> textBoxes;
 
         /// <summary>
         /// Gets or sets the puzzle.
@@ -45,8 +50,35 @@ namespace TeamANumbrix.View
 
         private void loadFirstPuzzle()
         {
-            
+            var firstPuzzle = PuzzleLoader.createFirstPuzzle();
+            foreach (TextBox textBox in findVisualChildren<TextBox>(this.Parent))
+            {
+                
+            }
         }
+
+        private static IEnumerable<T> findVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount((depObj)); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (T childOfChild in findVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+
+                }
+            }
+        }
+        
+
 
         private void handlePuzzleSetup()
         {

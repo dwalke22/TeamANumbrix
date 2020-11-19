@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using Windows.Storage;
-using Windows.Storage.Pickers;
 using TeamANumbrix.Model;
 
 namespace TeamANumbrix.Utility
@@ -64,11 +59,9 @@ namespace TeamANumbrix.Utility
                     {
                         //this.createFirstPuzzle(stats);
                     }
-                    catch (FormatException e)
+                    catch (Exception e)
                     {
-                    }
-                    catch (Exception)
-                    {
+                        Console.Write(e.Message);
                     }
                 }
             }
@@ -104,7 +97,7 @@ namespace TeamANumbrix.Utility
                 {
                     if (currentCell.Position == int.Parse(modifiedPositions[i]))
                     {
-                        currentCell.isChangeable = false;
+                        currentCell.IsChangeable = false;
                     }
                 }
             }
