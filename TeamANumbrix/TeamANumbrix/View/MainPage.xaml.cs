@@ -24,8 +24,18 @@ namespace TeamANumbrix.View
 
         public const int PuzzleDimensionSize = 8;
 
+        /// <summary>
+        /// Gets or sets the puzzle.
+        /// </summary>
+        /// <value>
+        /// The puzzle.
+        /// </value>
+        public Puzzle Puzzle { get; set; }
+
         public MainPage()
         {
+            this.Puzzle = new Puzzle(PuzzleDimensionSize);
+            this.handlePuzzleSetup();
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size { Width = ApplicationWidth, Height = ApplicationHeight };
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
@@ -38,9 +48,21 @@ namespace TeamANumbrix.View
             
         }
 
+        private void handlePuzzleSetup()
+        {
+            var puzzle1 = PuzzleLoader.createFirstPuzzle();
+            this.Puzzle = puzzle1;
+        }
+
+        private void handleChangeableTextBoxes()
+        {
+            List<TextBox> textboxes = new List<TextBox>();
+            textboxes.Add(this.cell0);
+        }
+
         private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Puzzle puzzle = PuzzleLoader.createPuzzles();
+            Puzzle puzzle = PuzzleLoader.createFirstPuzzle();
 
             var summary = string.Empty;
 
@@ -88,8 +110,26 @@ namespace TeamANumbrix.View
                 cells[i].Value = int.Parse(values[i]);
             }
 
-
             return cells;
+        }
+
+        private void handleModifiableCells()
+        {
+
+        }
+
+        public string getPositions(string[] values)
+        {
+            var positions = string.Empty;
+
+            foreach (var currentValue in values)
+            {
+                positions += currentValue[0];
+                positions += ",";
+
+            }
+
+            return positions;
         }
 
 
