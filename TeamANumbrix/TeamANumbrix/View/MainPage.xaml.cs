@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using TeamANumbrix.Model;
 using TeamANumbrix.Utility;
@@ -48,7 +46,6 @@ namespace TeamANumbrix.View
 
         private void loadFirstPuzzle()
         {
-            var firstPuzzle = PuzzleLoader.createFirstPuzzle();
             this.handleModifiableCells();
         }
 
@@ -95,35 +92,8 @@ namespace TeamANumbrix.View
             this.Puzzle = puzzle1;
         }
 
-        private void handleChangeableTextBoxes()
-        {
-            List<TextBox> textboxes = new List<TextBox>();
-            textboxes.Add(this.cell0);
-        }
-
-        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            Puzzle puzzle = PuzzleLoader.createFirstPuzzle();
-
-            var summary = string.Empty;
-
-            var checkWin = new PuzzleSolver(puzzle);
-            var isWon = checkWin.SolvePuzzle();
-            summary += isWon;
-            summary += Environment.NewLine;
-
-            foreach (var currentCell in puzzle)
-            {
-                summary += currentCell.ToString();
-                summary += Environment.NewLine;
-            }
-
-            this.textBlock.Text = summary;
-        }
-
         private bool handleSolvePuzzle()
         {
-            //this is where textbox data is inserted
             var cellValueData = this.getTextBoxData().Split(",");
 
             var cells = this.updateCellValues(cellValueData);
@@ -157,7 +127,6 @@ namespace TeamANumbrix.View
 
         private void handleModifiableCells()
         {
-            //var cellTextBoxes = findVisualChildren<TextBox>(this.Parent);
             foreach (var currentCell in this.Puzzle)
             {
                 if (!currentCell.IsChangeable)
@@ -176,14 +145,24 @@ namespace TeamANumbrix.View
             }
         }
 
-        private void SolvePuzzleButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void SolvePuzzleButton_Click(object sender, RoutedEventArgs e)
         {
-            this.checkPuzzleTextBlock.Text = this.handleSolvePuzzle().ToString();
-        }
+            if (this.handleSolvePuzzle())
+            {
+                this.checkPuzzleTextBlock.Visibility = Visibility.Visible;
+                this.checkPuzzleTextBlock.Text = "Solved!!";
+            }
+            else
+            {
+                this.checkPuzzleTextBlock.Visibility = Visibility.Visible;
+                this.checkPuzzleTextBlock.Text = "Incorrect!!";
+            }
+        } 
 
         private void LoadPuzzleButton_Click(object sender, RoutedEventArgs e)
         {
             this.loadFirstPuzzle();
+            this.checkPuzzleTextBlock.Visibility = Visibility.Collapsed;
         }
     }
 }
