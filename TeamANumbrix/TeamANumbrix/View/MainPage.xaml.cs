@@ -4,6 +4,7 @@ using System.Linq;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using TeamANumbrix.Model;
 using TeamANumbrix.Utility;
@@ -25,7 +26,6 @@ namespace TeamANumbrix.View
         public const string Comma = ",";
 
         public const int PuzzleDimensionSize = 8;
-
 
         /// <summary>
         /// Gets or sets the puzzle.
@@ -49,10 +49,24 @@ namespace TeamANumbrix.View
         private void loadFirstPuzzle()
         {
             var firstPuzzle = PuzzleLoader.createFirstPuzzle();
+            this.handleModifiableCells();
+        }
+
+
+        private string getTextBoxData()
+        {
+            var data = string.Empty;
+
             foreach (TextBox textBox in findVisualChildren<TextBox>(this.Parent))
             {
-                
+                data += textBox.Text;
+                if (textBox != this.cell63)
+                {
+                    data += ",";
+                }
             }
+
+            return data;
         }
 
         private static IEnumerable<T> findVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
@@ -71,13 +85,10 @@ namespace TeamANumbrix.View
                     {
                         yield return childOfChild;
                     }
-
                 }
             }
         }
         
-
-
         private void handlePuzzleSetup()
         {
             var puzzle1 = PuzzleLoader.createFirstPuzzle();
@@ -112,7 +123,8 @@ namespace TeamANumbrix.View
 
         private bool handleSolvePuzzle()
         {
-            var cellValueData = this.gatherCellData().Split(",");
+            //this is where textbox data is inserted
+            var cellValueData = this.getTextBoxData().Split(",");
 
             var cells = this.updateCellValues(cellValueData);
 
@@ -145,162 +157,33 @@ namespace TeamANumbrix.View
 
         private void handleModifiableCells()
         {
-
-        }
-
-        public string getPositions(string[] values)
-        {
-            var positions = string.Empty;
-
-            foreach (var currentValue in values)
+            //var cellTextBoxes = findVisualChildren<TextBox>(this.Parent);
+            foreach (var currentCell in this.Puzzle)
             {
-                positions += currentValue[0];
-                positions += ",";
-
+                if (!currentCell.IsChangeable)
+                {
+                    foreach (TextBox textBox in findVisualChildren<TextBox>(this.Parent))
+                    {
+                        var textBoxPosition = textBox.Name;
+                        var lmfao = textBoxPosition.Split("cell");
+                        if (int.Parse(lmfao[1]) + 1 == currentCell.Position)
+                        {
+                            textBox.Text = currentCell.Value.ToString();
+                            textBox.IsReadOnly = true;
+                        }
+                    }
+                }
             }
-
-            return positions;
         }
 
-
-        private string gatherCellData()
+        private void SolvePuzzleButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            var cellSummary = string.Empty;
-
-            cellSummary += this.cell0.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell1.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell2.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell3.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell4.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell5.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell6.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell7.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell8.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell9.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell10.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell11.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell12.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell13.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell14.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell15.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell16.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell17.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell18.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell19.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell20.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell21.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell22.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell23.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell24.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell25.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell26.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell27.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell28.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell29.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell30.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell31.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell32.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell33.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell34.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell35.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell36.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell37.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell38.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell39.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell40.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell41.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell42.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell43.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell44.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell45.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell46.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell47.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell48.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell49.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell50.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell51.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell52.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell53.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell54.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell55.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell56.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell57.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell58.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell59.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell60.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell61.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell62.Text;
-            cellSummary += Comma;
-            cellSummary += this.cell63.Text;
-            
-            return cellSummary;
+            this.checkPuzzleTextBlock.Text = this.handleSolvePuzzle().ToString();
         }
 
-        private void SolvePuzzleButton_Click(object sender, RoutedEventArgs e)
+        private void LoadPuzzleButton_Click(object sender, RoutedEventArgs e)
         {
-            this.checkResultsTextBox.Text = this.handleSolvePuzzle().ToString();
+            this.loadFirstPuzzle();
         }
     }
 }
