@@ -88,7 +88,7 @@ namespace TeamANumbrix.View
         
         private void handlePuzzleSetup()
         {
-            var puzzle1 = PuzzleLoader.createFirstPuzzle();
+            var puzzle1 = PuzzleLoader.CreateFirstPuzzle();
             this.Puzzle = puzzle1;
         }
 

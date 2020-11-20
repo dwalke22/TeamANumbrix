@@ -7,54 +7,79 @@ using TeamANumbrix.Model;
 
 namespace TeamANumbrix.Utility
 {
+    /// <summary>
+    ///  The Puzzle Loader class
+    /// </summary>
     public class PuzzleLoader
     {
-        /// <summary>
-        /// Gets or sets the puzzles.
-        /// </summary>
-        /// <value>
-        /// The puzzles.
-        /// </value>
-        public Dictionary<string, Puzzle> Puzzles { get; set; }
+        #region Data members
 
         /// <summary>
-        /// The file name
+        ///     The file name
         /// </summary>
         public const string FileName = "puzzleInput.bin";
 
         /// <summary>
-        /// The puzzle dimension size
+        ///     The puzzle dimension size
         /// </summary>
         public const int PuzzleDimensionSize = 8;
 
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        ///     Gets or sets the puzzles.
+        /// </summary>
+        /// <value>
+        ///     The puzzles.
+        /// </value>
+        public Dictionary<string, Puzzle> Puzzles { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        ///     Instanciates a new PuzzleLoader object
+        /// </summary>
         public PuzzleLoader()
         {
             this.Puzzles = new Dictionary<string, Puzzle>();
         }
 
+        #endregion
+
+        #region Methods
+        /// <summary>
+        ///     Loads and reads the selected puzzle file
+        /// </summary>
         public async void LoadAndReadFile()
         {
             var theFolder = ApplicationData.Current.LocalFolder;
             var theFile = await theFolder.GetFileAsync(FileName);
-            var inStream = await theFile.OpenStreamForReadAsync();
+            if (theFile == null)
+            {
+                throw new ArgumentNullException(nameof(theFile));
+            }
 
             this.processFile(theFile);
         }
 
         private async void processFile(StorageFile selectedFile)
         {
-            var fileToRead = await selectedFile.OpenAsync(Windows.Storage.FileAccessMode.Read);
-            var file = new FileInfo(selectedFile.Path);
+            var fileToRead = await selectedFile.OpenAsync(FileAccessMode.Read);
+            if (fileToRead == null)
+            {
+                throw new ArgumentNullException(nameof(fileToRead));
+            }
 
             using (var streamReader = new StreamReader(fileToRead.AsStream()))
             {
-                var counter = 0;
                 while (!streamReader.EndOfStream)
                 {
                     var line = await streamReader.ReadLineAsync();
-                    var stats = line.Split(',');
 
-                    counter++;
                     try
                     {
                         //this.createFirstPuzzle(stats);
@@ -67,45 +92,52 @@ namespace TeamANumbrix.Utility
             }
         }
 
-        public static Puzzle createFirstPuzzle()
+        /// <summary>
+        ///     Creates the first puzzle of the application
+        /// </summary>
+        /// <returns>
+        ///     Returns the first puzzle object
+        /// </returns>
+        public static Puzzle CreateFirstPuzzle()
         {
-            var puzzle1txt =
-                "1|1,2|16,3|17,4|32,5|33,6|48,7|49,8|64,9|2,10|15,11|18,12|31,13|34,14|47,15|50,16|63,17|3,18|14,19|19,20|30,21|35,22|46,23|51,24|62,25|4,26|13,27|20,28|29,29|36,30|45,31|52,32|61,33|5,34|12,35|21,36|28,37|37,38|44,39|53,40|60,41|6,42|11,43|22,44|27,45|38,46|43,47|54,48|59,49|7,50|10,51|23,52|26,53|39,54|42,55|55,56|58,57|8,58|9,59|24,60|25,61|40,62|41,63|56,64|57";
-            var cellsformod =
-                "1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:28,10:29,11:30,12:31,13:32,14:33,15:34,16:9,17:27,18:48,19:49,20:50,21:51,22:52,23:35,24:10,25:26,26:47,27:60,28:61,29:62,30:53,31:36,32:11,33:25,34:46,35:59,36:64,37:63,38:54,39:37,40:12,41:24,42:45,43:58,44:57,45:56,46:55,47:38,48:13,49:23,50:44,51:43,52:42,53:41,54:40,55:39,56:14,57:22,58:21,59:20,60:19,61:18,62:17,63:16,64:15";
-            var testTxt = "1|1,8|8,10|29,15|34,18|48,22|52,27|60,46|55,43|58,50|44,64|15,55|39,57|22";
-            var puzzleData = testTxt.Split(',');
+            var puzzle1Txt = "1|1,8|8,10|29,15|34,18|48,22|52,27|60,46|55,43|58,50|44,64|15,55|39,57|22";
+            var puzzleData = puzzle1Txt.Split(',');
 
-            var positions = getPositions(puzzleData);
+            var positions = GetPositions(puzzleData);
 
             var puzzle = new Puzzle(PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
-            handleModifiables(blankPuzzle, positions);
+            var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
+            handleModifiables(enumerable, positions);
 
-            puzzle.AddAll(blankPuzzle.ToList());
+            puzzle.AddAll(enumerable.ToList());
 
             return puzzle;
         }
 
-        private static IEnumerable<Cell> handleModifiables(IEnumerable<Cell> cells, string positions)
+        private static void handleModifiables(IEnumerable<Cell> cells, string positions)
         {
             var modifiedPositions = positions.Split(",");
 
-            for (var i = 0; i < modifiedPositions.Length; i++)
+            var enumerable = cells as Cell[] ?? cells.ToArray();
+            foreach (var t in modifiedPositions)
             {
-                foreach (var currentCell in cells.ToList())
+                foreach (var currentCell in enumerable.ToList())
                 {
-                    if (currentCell.Position == int.Parse(modifiedPositions[i]))
+                    if (currentCell.Position == int.Parse(t))
                     {
                         currentCell.IsChangeable = false;
                     }
                 }
             }
-            
-            return cells;
         }
 
-        public static string getPositions(string[] values)
+        /// <summary>
+        ///     Gets the positions of in the puzzle of the numbers
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static string GetPositions(string[] values)
         {
             var positions = string.Empty;
             var listValues = values.ToList();
@@ -122,5 +154,7 @@ namespace TeamANumbrix.Utility
 
             return positions;
         }
+
+        #endregion
     }
 }
