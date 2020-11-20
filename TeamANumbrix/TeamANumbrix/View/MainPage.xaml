@@ -76,7 +76,8 @@
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="692,114,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="830" Width="200"/>
         <Button Content="Button" Margin="721,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.582,0.517" Click="Button_Click"/>
         <Button x:Name="SolvePuzzleButton" Content="Solve" Margin="425,650,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
-        <TextBox x:Name="checkResultsTextBox" HorizontalAlignment="Left" Margin="441,742,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.377,-0.792"/>
+        <TextBlock x:Name="checkPuzzleTextBlock" HorizontalAlignment="Left" Margin="470,778,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="LoadPuzzleButton" Content="Load Puzzle 1" Margin="308,47,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click"/>
 
     </Grid>
 </Page>
