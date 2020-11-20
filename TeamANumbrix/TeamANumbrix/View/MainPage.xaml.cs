@@ -4,7 +4,6 @@ using System.Linq;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using TeamANumbrix.Model;
 using TeamANumbrix.Utility;
@@ -27,7 +26,6 @@ namespace TeamANumbrix.View
 
         public const int PuzzleDimensionSize = 8;
 
-        private List<TextBox> textBoxes;
 
         /// <summary>
         /// Gets or sets the puzzle.
@@ -300,7 +298,7 @@ namespace TeamANumbrix.View
             return cellSummary;
         }
 
-        private void SolvePuzzleButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void SolvePuzzleButton_Click(object sender, RoutedEventArgs e)
         {
             this.checkResultsTextBox.Text = this.handleSolvePuzzle().ToString();
         }
