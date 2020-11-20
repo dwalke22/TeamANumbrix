@@ -3,58 +3,79 @@ using System.Linq;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using TeamANumbrix.Model;
 using TeamANumbrix.Utility;
-using TextBox = Windows.UI.Xaml.Controls.TextBox;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace TeamANumbrix.View
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage
     {
+        #region Data members
+        /// <summary>
+        ///  The default application height
+        /// </summary>
         public const int ApplicationHeight = 800;
 
+        /// <summary>
+        ///     The default application width
+        /// </summary>
         public const int ApplicationWidth = 1000;
 
-        public const string Comma = ",";
-
+        /// <summary>
+        ///     The default dimension size for the puzzle
+        /// </summary>
         public const int PuzzleDimensionSize = 8;
 
+        #endregion
+
+        #region Properties
+
         /// <summary>
-        /// Gets or sets the puzzle.
+        ///     Gets or sets the puzzle.
         /// </summary>
         /// <value>
-        /// The puzzle.
+        ///     The puzzle.
         /// </value>
         public Puzzle Puzzle { get; set; }
 
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        ///     Instantiates a new Main Page object
+        /// </summary>
         public MainPage()
         {
             this.Puzzle = new Puzzle(PuzzleDimensionSize);
             this.handlePuzzleSetup();
             this.InitializeComponent();
-            ApplicationView.PreferredLaunchViewSize = new Size { Width = ApplicationWidth, Height = ApplicationHeight };
+            ApplicationView.PreferredLaunchViewSize = new Size {Width = ApplicationWidth, Height = ApplicationHeight};
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(ApplicationWidth, ApplicationHeight));
             this.loadFirstPuzzle();
         }
+
+        #endregion
+
+        #region Methods
 
         private void loadFirstPuzzle()
         {
             this.handleModifiableCells();
         }
 
-
         private string getTextBoxData()
         {
             var data = string.Empty;
 
-            foreach (TextBox textBox in findVisualChildren<TextBox>(this.Parent))
+            foreach (var textBox in findVisualChildren<TextBox>(Parent))
             {
                 data += textBox.Text;
                 if (textBox != this.cell63)
@@ -70,22 +91,22 @@ namespace TeamANumbrix.View
         {
             if (depObj != null)
             {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount((depObj)); i++)
+                for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
                 {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    var child = VisualTreeHelper.GetChild(depObj, i);
                     if (child != null && child is T)
                     {
-                        yield return (T)child;
+                        yield return (T) child;
                     }
 
-                    foreach (T childOfChild in findVisualChildren<T>(child))
+                    foreach (var childOfChild in findVisualChildren<T>(child))
                     {
                         yield return childOfChild;
                     }
                 }
             }
         }
-        
+
         private void handlePuzzleSetup()
         {
             var puzzle1 = PuzzleLoader.CreateFirstPuzzle();
@@ -106,7 +127,6 @@ namespace TeamANumbrix.View
             var isSolved = solver.SolvePuzzle();
 
             return isSolved;
-
         }
 
         private IEnumerable<Cell> updateCellValues(IReadOnlyList<string> values)
@@ -131,7 +151,7 @@ namespace TeamANumbrix.View
             {
                 if (!currentCell.IsChangeable)
                 {
-                    foreach (TextBox textBox in findVisualChildren<TextBox>(this.Parent))
+                    foreach (var textBox in findVisualChildren<TextBox>(Parent))
                     {
                         var textBoxPosition = textBox.Name;
                         var lmfao = textBoxPosition.Split("cell");
@@ -157,12 +177,14 @@ namespace TeamANumbrix.View
                 this.checkPuzzleTextBlock.Visibility = Visibility.Visible;
                 this.checkPuzzleTextBlock.Text = "Incorrect!!";
             }
-        } 
+        }
 
         private void LoadPuzzleButton_Click(object sender, RoutedEventArgs e)
         {
             this.loadFirstPuzzle();
             this.checkPuzzleTextBlock.Visibility = Visibility.Collapsed;
         }
+
+        #endregion
     }
 }
