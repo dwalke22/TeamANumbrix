@@ -8,6 +8,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <TextBox x:Name="timer" HorizontalAlignment="Left" Margin="210,25,0,0" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Height="65" Width="260" FontSize="48"/>
         <TextBox x:Name="cell0" HorizontalAlignment="Left" Margin="80,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell1" HorizontalAlignment="Left" Margin="145,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell2" HorizontalAlignment="Left" Margin="210,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
@@ -72,10 +73,12 @@
         <TextBox x:Name="cell61" HorizontalAlignment="Left" Margin="405,555,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell62" HorizontalAlignment="Left" Margin="470,555,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell63" HorizontalAlignment="Left" Margin="535,555,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
-        <Button x:Name="resetButton" Content="Reset" Margin="165,650,0,0" VerticalAlignment="Top" Height="50" Width="90" FontSize="24"/>
-        <Button x:Name="solvePuzzleButton" Content="Solve" Margin="425,650,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
+        <Button x:Name="pauseButton" Content="Pause" Margin="130,650,0,0" VerticalAlignment="Top" Width="90" Height="50" FontSize="24"/>
+        <Button x:Name="resetButton" Content="Reset" Margin="295,650,0,0" VerticalAlignment="Top" Height="50" Width="90" FontSize="24"/>
+        <Button x:Name="solvePuzzleButton" Content="Solve" Margin="460,650,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
         <TextBlock x:Name="checkPuzzleTextBlock" HorizontalAlignment="Left" Margin="170,730,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="50" FontSize="36" Padding="90,0,0,0" Visibility="Collapsed"/>
-        <Button x:Name="loadPuzzleButton" Content="Load Puzzle 1" Margin="310,47,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click"/>
+        <Button x:Name="loadPuzzleButton" Content="Load Puzzle 1" Margin="600,47,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click"/>
+
 
     </Grid>
 </Page>
