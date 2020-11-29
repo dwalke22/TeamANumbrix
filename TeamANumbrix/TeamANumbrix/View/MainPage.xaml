@@ -5,10 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="1497">
 
     <Grid>
-        <TextBox x:Name="timer" HorizontalAlignment="Left" Margin="210,25,0,0" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Height="65" Width="260" FontSize="48"/>
+        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" Margin="210,30,0,0" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" Height="55" FontSize="48" CharacterSpacing="200"/>
         <TextBox x:Name="cell0" HorizontalAlignment="Left" Margin="80,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell1" HorizontalAlignment="Left" Margin="145,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell2" HorizontalAlignment="Left" Margin="210,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>

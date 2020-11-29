@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
@@ -45,6 +46,11 @@ namespace TeamANumbrix.View
         /// </value>
         public Puzzle Puzzle { get; set; }
 
+        /// <summary>
+        ///     The timer to be used for the stopwatch
+        /// </summary>
+        public Stopwatch Timer { get; }
+
         #endregion
 
         #region Constructors
@@ -54,6 +60,7 @@ namespace TeamANumbrix.View
         public MainPage()
         {
             this.Puzzle = new Puzzle(PuzzleDimensionSize);
+            this.Timer = new Stopwatch();
             this.handlePuzzleSetup();
             this.InitializeComponent();
             ApplicationView.PreferredLaunchViewSize = new Size {Width = ApplicationWidth, Height = ApplicationHeight};
@@ -171,6 +178,9 @@ namespace TeamANumbrix.View
             {
                 this.checkPuzzleTextBlock.Visibility = Visibility.Visible;
                 this.checkPuzzleTextBlock.Text = "Solved!!";
+                this.Timer.Stop();
+                this.timerTextBlock.Text = this.Timer.ToString();
+                this.Timer.Reset();
             }
             else
             {
@@ -182,6 +192,7 @@ namespace TeamANumbrix.View
         private void LoadPuzzleButton_Click(object sender, RoutedEventArgs e)
         {
             this.loadFirstPuzzle();
+            this.Timer.Start();
             this.checkPuzzleTextBlock.Visibility = Visibility.Collapsed;
         }
 
