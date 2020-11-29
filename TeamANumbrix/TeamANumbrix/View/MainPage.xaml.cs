@@ -122,7 +122,7 @@ namespace TeamANumbrix.View
             var puzzle = new Puzzle(PuzzleDimensionSize);
             puzzle.AddAll(cells);
 
-            var sortedPuzzle = PuzzleCreator.orderPuzzle(puzzle);
+            var sortedPuzzle = PuzzleCreator.OrderPuzzle(puzzle);
             var solver = new PuzzleSolver(sortedPuzzle);
             var isSolved = solver.SolvePuzzle();
 
@@ -134,7 +134,7 @@ namespace TeamANumbrix.View
             var maxRange = PuzzleDimensionSize * PuzzleDimensionSize;
 
             var puzzle = PuzzleCreator.CreateBlankPuzzle();
-            var sortedPuzzle = PuzzleCreator.orderPuzzle(puzzle);
+            var sortedPuzzle = PuzzleCreator.OrderPuzzle(puzzle);
             var cells = sortedPuzzle.ToList();
 
             for (var i = 0; i < maxRange; i++)

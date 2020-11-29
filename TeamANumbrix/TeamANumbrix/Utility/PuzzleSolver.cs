@@ -1,21 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TeamANumbrix.Model;
 
 namespace TeamANumbrix.Utility
 {
+    /// <summary>
+    ///     The Puzzle solver class
+    /// </summary>
     public class PuzzleSolver
     {
+        /// <summary>
+        ///     The Puzzle
+        /// </summary>
         public Puzzle Puzzle { get; set; }
 
+        /// <summary>
+        ///     Instantiates a new Puzzle solver object
+        /// </summary>
+        /// <param name="puzzle"></param>
         public PuzzleSolver(Puzzle puzzle)
         {
             this.Puzzle = puzzle;
         }
 
+        /// <summary>
+        ///     Determines if the puzzle has been solved
+        /// </summary>
+        /// <returns>
+        ///     Returns true if solved, false otherwise
+        /// </returns>
         public bool SolvePuzzle()
         {
             var isSolved = true;

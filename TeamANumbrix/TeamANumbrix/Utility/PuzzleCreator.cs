@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using TeamANumbrix.Model;
 
 
 namespace TeamANumbrix.Utility
 {
+    /// <summary>
+    ///     The Puzzle Creator class
+    /// </summary>
     public class PuzzleCreator
     {
         /// <summary>
@@ -16,10 +15,15 @@ namespace TeamANumbrix.Utility
         /// </summary>
         public const int PuzzleDimensionSize = 8;
 
+        /// <summary>
+        ///     Creates a puzzle
+        /// </summary>
+        /// <param name="stats"></param>
+        /// <returns></returns>
         public static IEnumerable<Cell> CreatePuzzle(IReadOnlyList<string> stats)
         {
             var puzzle = CreateBlankPuzzle();
-            var sortedPuzzle = orderPuzzle(puzzle);
+            var sortedPuzzle = OrderPuzzle(puzzle);
             var sortedList = sortedPuzzle.ToList();
 
             var modifiedPuzzle = setUnmodifiableCells(stats, sortedList);
@@ -42,7 +46,7 @@ namespace TeamANumbrix.Utility
             }
             var puzzle = new Puzzle(PuzzleDimensionSize);
             puzzle.AddAll(cells);
-            var orderedPuzzle = orderPuzzle(puzzle);
+            var orderedPuzzle = OrderPuzzle(puzzle);
 
             return orderedPuzzle;
         }
@@ -71,12 +75,19 @@ namespace TeamANumbrix.Utility
             puzzle.AddAll(westEdgeCells);
             puzzle.AddAll(middleCells);
 
-            orderPuzzle(puzzle);
+            OrderPuzzle(puzzle);
 
             return puzzle;
         }
 
-        public static Puzzle orderPuzzle(Puzzle puzzle)
+        /// <summary>
+        ///     Orders the puzzle
+        /// </summary>
+        /// <param name="puzzle"></param>
+        /// <returns>
+        ///     Returns the created puzzle
+        /// </returns>
+        public static Puzzle OrderPuzzle(Puzzle puzzle)
         {
             var sortedPuzzle = new Puzzle(PuzzleDimensionSize);
 
