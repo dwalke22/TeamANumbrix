@@ -41,6 +41,8 @@ namespace TeamANumbrix.Model
         {
             this.AvailablePuzzles.Add("1", this.generatePuzzle1());
             this.AvailablePuzzles.Add("2", this.generatePuzzle2());
+            this.AvailablePuzzles.Add("3", this.generatePuzzle3());
+            this.AvailablePuzzles.Add("4", this.generatePuzzle4());
 
         }
 
@@ -54,7 +56,7 @@ namespace TeamANumbrix.Model
             var puzzle = new Puzzle(puzzleId, PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
             var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
-            handleModifiables(enumerable, positions);
+            handleModifiableCells(enumerable, positions);
 
             puzzle.AddAll(enumerable.ToList());
 
@@ -71,7 +73,7 @@ namespace TeamANumbrix.Model
             var puzzle = new Puzzle(puzzleId, PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
             var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
-            handleModifiables(enumerable, positions);
+            handleModifiableCells(enumerable, positions);
 
             puzzle.AddAll(enumerable.ToList());
 
@@ -80,7 +82,7 @@ namespace TeamANumbrix.Model
 
         private Puzzle generatePuzzle3()
         {
-            var puzzleId = "1|1,41|6,58|9,10|15,6|20,14|25,20|30,24|34,27|40,40|46,43|52,55|57";
+            var puzzleId = "1|21,7|41,10|23,14|57,17|19,18|24,19|47,20|54,21|63,22|64,23|59,24|38,64|5,46|1,54|8,50|28,42|27,63|6,59|12,33|17,53|31,37|33,40|36";
             var puzzleData = puzzleId.Split(',');
 
             var positions = GetPositions(puzzleData);
@@ -88,14 +90,31 @@ namespace TeamANumbrix.Model
             var puzzle = new Puzzle(puzzleId, PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
             var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
-            handleModifiables(enumerable, positions);
+            handleModifiableCells(enumerable, positions);
 
             puzzle.AddAll(enumerable.ToList());
 
             return puzzle;
         }
 
-        private static void handleModifiables(IEnumerable<Cell> cells, string positions)
+        private Puzzle generatePuzzle4()
+        {
+            var puzzleId = "28|1,29|2,36|4,19|7,1|11,41|20,45|24,53|25,49|29,61|34,20|64";
+            var puzzleData = puzzleId.Split(',');
+
+            var positions = GetPositions(puzzleData);
+
+            var puzzle = new Puzzle(puzzleId, PuzzleDimensionSize);
+            var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
+            var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
+            handleModifiableCells(enumerable, positions);
+
+            puzzle.AddAll(enumerable.ToList());
+
+            return puzzle;
+        }
+
+        private static void handleModifiableCells(IEnumerable<Cell> cells, string positions)
         {
             var modifiedPositions = positions.Split(",");
 

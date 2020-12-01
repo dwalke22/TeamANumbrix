@@ -34,6 +34,11 @@ namespace TeamANumbrix.View
         /// </summary>
         public const int PuzzleDimensionSize = 8;
 
+        /// <summary>
+        /// The current puzzle
+        /// </summary>
+        public const int CurrentPuzzle = 4;
+
         #endregion
 
         #region Properties
@@ -134,7 +139,7 @@ namespace TeamANumbrix.View
         private void handlePuzzleSetup()
         {
             //chosenPuzzle variable will store the users puzzle pick and then set this.Puzzle equal to it
-            var chosenPuzzle = this.Puzzles.AvailablePuzzles["2"];
+            var chosenPuzzle = this.Puzzles.AvailablePuzzles[CurrentPuzzle.ToString()];
             this.Puzzle = chosenPuzzle;
         }
 
@@ -238,7 +243,7 @@ namespace TeamANumbrix.View
         private void resetDisplayToSelectedPuzzle()
         {
             //this line should become = to this.selectedPuzzle
-            this.Puzzle = this.Puzzles.AvailablePuzzles["2"];
+            this.Puzzle = this.Puzzles.AvailablePuzzles[CurrentPuzzle.ToString()];
 
             foreach (var currentCell in this.Puzzle)
             {

@@ -8,7 +8,7 @@ namespace TeamANumbrix.Model
     /// The LeaderBoard Class
     /// </summary>
     /// <seealso cref="System.Collections.Generic.IList{TeamANumbrix.Model.HighScore}" />
-    public class Leaderboard : IList<HighScore>
+    public class LeaderBoard : IList<HighScore>
     {
         #region Properties
 
@@ -193,6 +193,11 @@ namespace TeamANumbrix.Model
             }
 
             return -1;
+        }
+
+        public void sortByHighScore()
+        {
+
         }
 
         #endregion

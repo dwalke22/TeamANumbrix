@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 
 namespace TeamANumbrix.Model
 {
@@ -33,7 +34,7 @@ namespace TeamANumbrix.Model
         /// <value>
         /// The puzzle number.
         /// </value>
-        public string PuzzleId { get; set; }
+        public string UnmodifiableCells { get; set; }
 
         /// <summary>
         ///     Gets or sets the size of the dimension.
@@ -42,6 +43,14 @@ namespace TeamANumbrix.Model
         ///     The size of the dimension.
         /// </value>
         public int DimensionSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets the timer.
+        /// </summary>
+        /// <value>
+        /// The timer.
+        /// </value>
+        public Timer Timer { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only.
@@ -72,13 +81,27 @@ namespace TeamANumbrix.Model
         /// <summary>
         /// Instantiates a new Puzzle object
         /// </summary>
-        /// <param name="puzzleID">The puzzle identifier.</param>
+        /// <param name="unmodifiableCells">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
-        public Puzzle(string puzzleID, int dimensionSize)
+        public Puzzle(string unmodifiableCells, int dimensionSize)
         {
             this.Cells = new Collection<Cell>();
-            this.PuzzleId = puzzleID;
+            this.UnmodifiableCells = unmodifiableCells;
             this.DimensionSize = dimensionSize;
+        }
+
+        /// <summary>
+        /// Instantiates a new Puzzle object
+        /// </summary>
+        /// <param name="unmodifiableCells">The puzzle identifier.</param>
+        /// <param name="dimensionSize">Size of the dimension.</param>
+        /// <param name="timer">The timer.</param>
+        public Puzzle(string unmodifiableCells, int dimensionSize, Timer timer)
+        {
+            this.Cells = new Collection<Cell>();
+            this.UnmodifiableCells = unmodifiableCells;
+            this.DimensionSize = dimensionSize;
+            this.Timer = timer;
         }
 
         #endregion
