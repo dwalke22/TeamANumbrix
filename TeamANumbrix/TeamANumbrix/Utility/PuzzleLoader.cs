@@ -115,6 +115,13 @@ namespace TeamANumbrix.Utility
             return puzzle;
         }
 
+        public static Puzzle CreateSecondPuzzle()
+        {
+            var puzzle = new Puzzle(2, PuzzleDimensionSize);
+
+            return puzzle;
+        }
+
         private static void handleModifiables(IEnumerable<Cell> cells, string positions)
         {
             var modifiedPositions = positions.Split(",");
@@ -133,10 +140,12 @@ namespace TeamANumbrix.Utility
         }
 
         /// <summary>
-        ///     Gets the positions of in the puzzle of the numbers
+        ///     Gets the positions of the unmodifiable cells in the puzzle
         /// </summary>
         /// <param name="values"></param>
-        /// <returns></returns>
+        /// <returns>
+        ///     The positions of the unmodifiable cells in the puzzle
+        /// </returns>
         public static string GetPositions(string[] values)
         {
             var positions = string.Empty;

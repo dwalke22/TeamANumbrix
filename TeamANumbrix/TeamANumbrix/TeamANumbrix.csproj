@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="Model\Cell.cs" />
     <Compile Include="Model\Puzzle.cs" />
+    <Compile Include="Model\Puzzles.cs" />
     <Compile Include="Utility\GeneralComparer.cs" />
     <Compile Include="Utility\PuzzleCreator.cs" />
     <Compile Include="Utility\PuzzleLoader.cs" />

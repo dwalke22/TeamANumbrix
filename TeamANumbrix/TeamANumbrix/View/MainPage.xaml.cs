@@ -116,8 +116,8 @@ namespace TeamANumbrix.View
 
         private void handlePuzzleSetup()
         {
-            var puzzle1 = PuzzleLoader.CreateFirstPuzzle();
-            this.Puzzle = puzzle1;
+            var chosenPuzzle = PuzzleLoader.CreateFirstPuzzle();
+            this.Puzzle = chosenPuzzle;
         }
 
         private bool handleSolvePuzzle()
@@ -170,8 +170,8 @@ namespace TeamANumbrix.View
                     foreach (var textBox in findVisualChildren<TextBox>(Parent))
                     {
                         var textBoxPosition = textBox.Name;
-                        var lmfao = textBoxPosition.Split("cell");
-                        if (int.Parse(lmfao[1]) + 1 == currentCell.Position)
+                        var cellValue = textBoxPosition.Split("cell");
+                        if (int.Parse(cellValue[1]) + 1 == currentCell.Position)
                         {
                             textBox.Text = currentCell.Value.ToString();
                             textBox.IsReadOnly = true;

@@ -28,6 +28,14 @@ namespace TeamANumbrix.Model
         public int Count => this.Cells.Count;
 
         /// <summary>
+        /// Gets or sets the puzzle number.
+        /// </summary>
+        /// <value>
+        /// The puzzle number.
+        /// </value>
+        public int PuzzleNumber { get; set; }
+
+        /// <summary>
         ///     Gets or sets the size of the dimension.
         /// </summary>
         /// <value>
@@ -52,12 +60,24 @@ namespace TeamANumbrix.Model
 
         #region Constructors
         /// <summary>
-        ///     Instantiates a new Puzzle object
+        /// Instantiates a new Puzzle object
         /// </summary>
-        /// <param name="dimensionSize"></param>
+        /// <param name="dimensionSize">Size of the dimension.</param>
         public Puzzle(int dimensionSize)
         {
             this.Cells = new Collection<Cell>();
+            this.DimensionSize = dimensionSize;
+        }
+
+        /// <summary>
+        /// Instantiates a new Puzzle object
+        /// </summary>
+        /// <param name="puzzleNumber">The puzzle number.</param>
+        /// <param name="dimensionSize">Size of the dimension.</param>
+        public Puzzle(int puzzleNumber, int dimensionSize)
+        {
+            this.Cells = new Collection<Cell>();
+            this.PuzzleNumber = puzzleNumber;
             this.DimensionSize = dimensionSize;
         }
 
@@ -92,6 +112,8 @@ namespace TeamANumbrix.Model
             {
                 throw new NullReferenceException("Cell cannot be null");
             }
+
+            this.Cells.Add(cell);
         }
 
         /// <summary>
