@@ -33,7 +33,7 @@ namespace TeamANumbrix.Model
         /// <value>
         /// The puzzle number.
         /// </value>
-        public int PuzzleNumber { get; set; }
+        public string PuzzleId { get; set; }
 
         /// <summary>
         ///     Gets or sets the size of the dimension.
@@ -72,12 +72,12 @@ namespace TeamANumbrix.Model
         /// <summary>
         /// Instantiates a new Puzzle object
         /// </summary>
-        /// <param name="puzzleNumber">The puzzle number.</param>
+        /// <param name="puzzleID">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
-        public Puzzle(int puzzleNumber, int dimensionSize)
+        public Puzzle(string puzzleID, int dimensionSize)
         {
             this.Cells = new Collection<Cell>();
-            this.PuzzleNumber = puzzleNumber;
+            this.PuzzleId = puzzleID;
             this.DimensionSize = dimensionSize;
         }
 

@@ -47,6 +47,22 @@ namespace TeamANumbrix.View
         public Puzzle Puzzle { get; set; }
 
         /// <summary>
+        /// Gets or sets the selected puzzle.
+        /// </summary>
+        /// <value>
+        /// The selected puzzle.
+        /// </value>
+        public Puzzle SelectedPuzzle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the puzzles.
+        /// </summary>
+        /// <value>
+        /// The puzzles.
+        /// </value>
+        public Puzzles Puzzles { get; set; }
+
+        /// <summary>
         ///     The timer to be used for the stopwatch
         /// </summary>
         public Stopwatch Timer { get; }
@@ -60,6 +76,7 @@ namespace TeamANumbrix.View
         public MainPage()
         {
             this.Puzzle = new Puzzle(PuzzleDimensionSize);
+            this.Puzzles = new Puzzles();
             this.Timer = new Stopwatch();
             this.handlePuzzleSetup();
             this.InitializeComponent();
@@ -117,7 +134,7 @@ namespace TeamANumbrix.View
         private void handlePuzzleSetup()
         {
             //chosenPuzzle variable will store the users puzzle pick and then set this.Puzzle equal to it
-            var chosenPuzzle = PuzzleLoader.CreateFirstPuzzle();
+            var chosenPuzzle = this.Puzzles.AvailablePuzzles["2"];
             this.Puzzle = chosenPuzzle;
         }
 
@@ -166,18 +183,23 @@ namespace TeamANumbrix.View
         {
             foreach (var currentCell in this.Puzzle)
             {
-                if (!currentCell.IsChangeable)
+                if (currentCell.IsChangeable)
                 {
-                    foreach (var textBox in findVisualChildren<TextBox>(Parent))
+                    continue;
+                }
+
+                foreach (var textBox in findVisualChildren<TextBox>(Parent))
+                {
+                    var textBoxPosition = textBox.Name;
+                    var cellValue = textBoxPosition.Split("cell");
+
+                    if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
                     {
-                        var textBoxPosition = textBox.Name;
-                        var cellValue = textBoxPosition.Split("cell");
-                        if (int.Parse(cellValue[1]) + 1 == currentCell.Position)
-                        {
-                            textBox.Text = currentCell.Value.ToString();
-                            textBox.IsReadOnly = true;
-                        }
+                        continue;
                     }
+
+                    textBox.Text = currentCell.Value.ToString();
+                    textBox.IsReadOnly = true;
                 }
             }
         }
@@ -207,5 +229,37 @@ namespace TeamANumbrix.View
         }
 
         #endregion
+
+        private void resetButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.resetDisplayToSelectedPuzzle();
+        }
+
+        private void resetDisplayToSelectedPuzzle()
+        {
+            //this line should become = to this.selectedPuzzle
+            this.Puzzle = this.Puzzles.AvailablePuzzles["2"];
+
+            foreach (var currentCell in this.Puzzle)
+            {
+                foreach (var textBox in findVisualChildren<TextBox>(Parent))
+                {
+                    var textBoxPosition = textBox.Name;
+                    var cellValue = textBoxPosition.Split("cell");
+
+                    if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
+                    {
+                        continue;
+                    }
+
+                    textBox.Text = currentCell.Value.ToString();
+
+                    if (textBox.Text.Equals("0"))
+                    {
+                        textBox.Text = "";
+                    }
+                }
+            }
+        }
     }
 }

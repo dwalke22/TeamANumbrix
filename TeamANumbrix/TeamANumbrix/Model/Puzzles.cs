@@ -40,16 +40,52 @@ namespace TeamANumbrix.Model
         private void generatePuzzles()
         {
             this.AvailablePuzzles.Add("1", this.generatePuzzle1());
+            this.AvailablePuzzles.Add("2", this.generatePuzzle2());
+
         }
 
         private Puzzle generatePuzzle1()
         {
-            var puzzle1Txt = "1|1,8|8,10|29,15|34,18|48,22|52,27|60,46|55,43|58,50|44,64|15,55|39,57|22";
-            var puzzleData = puzzle1Txt.Split(',');
+            var puzzleId = "1|1,8|8,10|29,15|34,18|48,22|52,27|60,46|55,43|58,50|44,64|15,55|39,57|22";
+            var puzzleData = puzzleId.Split(',');
 
             var positions = GetPositions(puzzleData);
 
-            var puzzle = new Puzzle(PuzzleDimensionSize);
+            var puzzle = new Puzzle(puzzleId, PuzzleDimensionSize);
+            var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
+            var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
+            handleModifiables(enumerable, positions);
+
+            puzzle.AddAll(enumerable.ToList());
+
+            return puzzle;
+        }
+
+        private Puzzle generatePuzzle2()
+        {
+            var puzzleId = "1|1,41|6,58|9,10|15,6|20,14|25,20|30,24|34,27|40,40|46,43|52,55|57";
+            var puzzleData = puzzleId.Split(',');
+
+            var positions = GetPositions(puzzleData);
+
+            var puzzle = new Puzzle(puzzleId, PuzzleDimensionSize);
+            var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
+            var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
+            handleModifiables(enumerable, positions);
+
+            puzzle.AddAll(enumerable.ToList());
+
+            return puzzle;
+        }
+
+        private Puzzle generatePuzzle3()
+        {
+            var puzzleId = "1|1,41|6,58|9,10|15,6|20,14|25,20|30,24|34,27|40,40|46,43|52,55|57";
+            var puzzleData = puzzleId.Split(',');
+
+            var positions = GetPositions(puzzleData);
+
+            var puzzle = new Puzzle(puzzleId, PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
             var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
             handleModifiables(enumerable, positions);
