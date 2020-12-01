@@ -2,30 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using TeamANumbrix.Utility;
 
 namespace TeamANumbrix.Model
 {
-    public class Puzzles : ICollection<Puzzle>
+    public class Puzzles
     {
         #region Properties
 
         /// <summary>
-        ///     Gets the puzzles.
+        ///     Gets the AvailablePuzzles.
         /// </summary>
         /// <value>
-        ///     The puzzles.
+        ///     The AvailablePuzzles.
         /// </value>
-        private ICollection<Puzzle> puzzles { get; }
+        public IDictionary<string, Puzzle> AvailablePuzzles { get; }
 
         /// <summary>
-        ///     Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"></see>.
+        /// The size of the puzzle
         /// </summary>
-        public int Count => this.puzzles.Count;
-
-        /// <summary>
-        ///     Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only.
-        /// </summary>
-        public bool IsReadOnly => true;
+        public const int PuzzleDimensionSize = 8;
 
         #endregion
 
@@ -36,115 +33,75 @@ namespace TeamANumbrix.Model
         /// </summary>
         public Puzzles()
         {
-            this.puzzles = new Collection<Puzzle>();
+            this.AvailablePuzzles = new Dictionary<string, Puzzle>();
+            this.generatePuzzles();
         }
 
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        ///     Gets the enumerator.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerator<Puzzle> GetEnumerator()
+        private void generatePuzzles()
         {
-            return this.puzzles.GetEnumerator();
+            this.AvailablePuzzles.Add("1", this.generatePuzzle1());
         }
 
-        /// <summary>
-        ///     Gets the enumerator.
-        /// </summary>
-        /// <returns></returns>
-        IEnumerator IEnumerable.GetEnumerator()
+        private Puzzle generatePuzzle1()
         {
-            return this.GetEnumerator();
+            var puzzle1Txt = "1|1,8|8,10|29,15|34,18|48,22|52,27|60,46|55,43|58,50|44,64|15,55|39,57|22";
+            var puzzleData = puzzle1Txt.Split(',');
+
+            var positions = GetPositions(puzzleData);
+
+            var puzzle = new Puzzle(PuzzleDimensionSize);
+            var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
+            var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
+            handleModifiables(enumerable, positions);
+
+            puzzle.AddAll(enumerable.ToList());
+
+            return puzzle;
         }
 
-        /// <summary>
-        ///     Adds the specified puzzle.
-        /// </summary>
-        /// <param name="puzzle">The puzzle.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        public void Add(Puzzle puzzle)
+        private static void handleModifiables(IEnumerable<Cell> cells, string positions)
         {
-            if (puzzle == null)
+            var modifiedPositions = positions.Split(",");
+
+            var enumerable = cells as Cell[] ?? cells.ToArray();
+            foreach (var t in modifiedPositions)
             {
-                throw new ArgumentNullException();
+                foreach (var currentCell in enumerable.ToList())
+                {
+                    if (currentCell.Position == int.Parse(t))
+                    {
+                        currentCell.IsChangeable = false;
+                    }
+                }
             }
-
-            this.puzzles.Add(puzzle);
         }
 
         /// <summary>
-        ///     Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"></see>.
+        ///     Gets the positions of the unmodifiable cells in the puzzle
         /// </summary>
-        public void Clear()
-        {
-            this.puzzles.Clear();
-        }
-
-        /// <summary>
-        ///     Determines whether this instance contains the object.
-        /// </summary>
-        /// <param name="puzzle">The puzzle.</param>
+        /// <param name="values"></param>
         /// <returns>
-        ///     <c>true</c> if [contains] [the specified puzzle]; otherwise, <c>false</c>.
+        ///     The positions of the unmodifiable cells in the puzzle
         /// </returns>
-        /// <exception cref="NullReferenceException">Cell cannot be null</exception>
-        public bool Contains(Puzzle puzzle)
+        public static string GetPositions(string[] values)
         {
-            var containsCell = false;
-            if (puzzle == null)
+            var positions = string.Empty;
+            var listValues = values.ToList();
+
+            for (var i = 0; i < listValues.Count; i++)
             {
-                throw new NullReferenceException("Cell cannot be null");
+                var value = listValues[i].Split("|");
+                positions += value[0];
+                if (i != listValues.Count - 1)
+                {
+                    positions += ",";
+                }
             }
 
-            if (this.puzzles.Contains(puzzle))
-            {
-                containsCell = true;
-            }
-
-            return containsCell;
-        }
-
-        /// <summary>
-        ///     Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"></see> to an
-        ///     <see cref="T:System.Array"></see>, starting at a particular <see cref="T:System.Array"></see> index.
-        /// </summary>
-        /// <param name="array">
-        ///     The one-dimensional <see cref="T:System.Array"></see> that is the destination of the elements
-        ///     copied from <see cref="T:System.Collections.Generic.ICollection`1"></see>. The <see cref="T:System.Array"></see>
-        ///     must have zero-based indexing.
-        /// </param>
-        /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
-        /// <exception cref="ArgumentException">Index cannot be negative</exception>
-        public void CopyTo(Puzzle[] array, int arrayIndex)
-        {
-            if (arrayIndex < 0)
-            {
-                throw new ArgumentException("Index cannot be negative");
-            }
-
-            this.puzzles.CopyTo(array, arrayIndex);
-        }
-
-        /// <summary>
-        ///     Removes the specified puzzle.
-        /// </summary>
-        /// <param name="puzzle">The puzzle.</param>
-        /// <returns></returns>
-        /// <exception cref="NullReferenceException">Cell cannot be null</exception>
-        public bool Remove(Puzzle puzzle)
-        {
-            if (puzzle == null)
-            {
-                throw new NullReferenceException("Cell cannot be null");
-            }
-
-            return this.puzzles.Remove(puzzle);
+            return positions;
         }
 
         #endregion
     }
+
 }

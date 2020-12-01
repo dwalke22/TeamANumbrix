@@ -29,10 +29,10 @@ namespace TeamANumbrix.Utility
         #region Properties
 
         /// <summary>
-        ///     Gets or sets the puzzles.
+        ///     Gets or sets the AvailablePuzzles.
         /// </summary>
         /// <value>
-        ///     The puzzles.
+        ///     The AvailablePuzzles.
         /// </value>
         public Dictionary<string, Puzzle> Puzzles { get; set; }
 

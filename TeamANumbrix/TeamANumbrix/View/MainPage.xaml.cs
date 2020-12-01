@@ -116,6 +116,7 @@ namespace TeamANumbrix.View
 
         private void handlePuzzleSetup()
         {
+            //chosenPuzzle variable will store the users puzzle pick and then set this.Puzzle equal to it
             var chosenPuzzle = PuzzleLoader.CreateFirstPuzzle();
             this.Puzzle = chosenPuzzle;
         }
