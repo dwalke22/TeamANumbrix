@@ -139,6 +139,15 @@ namespace TeamANumbrix.View
         private IEnumerable<Cell> updateCellValues(IReadOnlyList<string> values)
         {
             var maxRange = PuzzleDimensionSize * PuzzleDimensionSize;
+            var checkedValues = values.ToList();
+
+            for (var i = 0; i < checkedValues.Count; i++)
+            {
+                if (checkedValues[i].Equals(string.Empty))
+                {
+                    checkedValues[i] = "0";
+                }
+            }
 
             var puzzle = PuzzleCreator.CreateBlankPuzzle();
             var sortedPuzzle = PuzzleCreator.OrderPuzzle(puzzle);
@@ -146,7 +155,7 @@ namespace TeamANumbrix.View
 
             for (var i = 0; i < maxRange; i++)
             {
-                cells[i].Value = int.Parse(values[i]);
+                cells[i].Value = int.Parse(checkedValues[i]);
             }
 
             return cells;
