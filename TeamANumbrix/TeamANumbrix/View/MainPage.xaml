@@ -79,13 +79,14 @@
         <TextBox x:Name="cell61" HorizontalAlignment="Left" Margin="405,555,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell62" HorizontalAlignment="Left" Margin="470,555,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
         <TextBox x:Name="cell63" HorizontalAlignment="Left" Margin="535,555,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36"/>
-        <Button x:Name="pauseButton" Content="Pause" Margin="130,650,0,0" VerticalAlignment="Top" Width="90" Height="50" FontSize="24"/>
-        <Button x:Name="resetButton" Content="Reset" Margin="295,650,0,0" VerticalAlignment="Top" Height="50" Width="90" FontSize="24" Click="resetButton_Click"/>
-        <Button x:Name="solvePuzzleButton" Content="Solve" Margin="460,650,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
+        <Button x:Name="pauseButton" Content="Pause" Margin="133,731,0,0" VerticalAlignment="Top" Width="90" Height="50" FontSize="24"/>
+        <Button x:Name="resetButton" Content="Reset" Margin="287,731,0,0" VerticalAlignment="Top" Height="50" Width="90" FontSize="24" Click="resetButton_Click"/>
+        <Button x:Name="solvePuzzleButton" Content="Solve" Margin="458,731,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
         <TextBlock x:Name="checkPuzzleTextBlock" HorizontalAlignment="Left" Margin="170,730,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="50" FontSize="36" Padding="90,0,0,0" Visibility="Collapsed"/>
         <ComboBox x:Name="puzzlePickerComboBox" Margin="650,81,0,0" Width="275" PlaceholderText="Select A Puzzle" FontSize="24" ItemsSource="{Binding Path=Puzzles.AvailablePuzzles.Values, Mode=OneWay}" SelectedItem="{Binding Path=SelectedPuzzle, Mode=TwoWay}" Height="45"/>
         <Button x:Name="loadPuzzleButton" Content="Load Puzzle" Margin="712.5,157,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click" Width="150" Height="50" FontSize="24"/>
         <ListView x:Name="leaderBoardListView" ItemsSource="{Binding Path=HighScores, Mode=TwoWay}" BorderBrush="Black" BorderThickness="2" Width="275" Height="300" Margin="650,265,572,435"/>
+        <TextBlock x:Name="puzzleName" HorizontalAlignment="Left" Margin="197,649,0,0" Text="Select A Puzzle To Begin" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="40" FontSize="24"/>
 
     </Grid>
 </Page>

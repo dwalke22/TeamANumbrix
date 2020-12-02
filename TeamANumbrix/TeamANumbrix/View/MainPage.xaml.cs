@@ -213,7 +213,6 @@ namespace TeamANumbrix.View
             {
                 this.Puzzle = puzzles[0];
                 this.resetDisplay();
-                this.puzzlePickerComboBox.SelectedIndex = 0;
             }
             else
             {
@@ -262,6 +261,7 @@ namespace TeamANumbrix.View
 
         private void resetDisplay()
         {
+            this.puzzleName.Text = this.Puzzle.PuzzleName;
             foreach (var currentCell in this.Puzzle)
             {
                 foreach (var textBox in findVisualChildren<TextBox>(Parent))
@@ -291,6 +291,7 @@ namespace TeamANumbrix.View
         {
             var puzzle = (Puzzle)this.puzzlePickerComboBox.SelectionBoxItem;
             this.Puzzle = puzzle;
+            this.puzzleName.Text = this.Puzzle.PuzzleName;
 
             foreach (var currentCell in this.Puzzle)
             {
