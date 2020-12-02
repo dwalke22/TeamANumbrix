@@ -179,7 +179,7 @@ namespace TeamANumbrix.View
                 this.checkPuzzleTextBlock.Visibility = Visibility.Visible;
                 this.checkPuzzleTextBlock.Text = "Solved!!";
                 this.Timer.Stop();
-                this.timerTextBlock.Text = this.Timer.ToString();
+                this.timerTextBlock.Text = this.Timer.Elapsed.ToString();
                 this.Timer.Reset();
             }
             else
