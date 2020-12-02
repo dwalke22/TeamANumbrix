@@ -35,11 +35,6 @@ namespace TeamANumbrix.View
         /// </summary>
         public const int PuzzleDimensionSize = 8;
 
-        /// <summary>
-        /// The current puzzle
-        /// </summary>
-        public const int CurrentPuzzle = 4;
-
         #endregion
 
         #region Properties
@@ -89,20 +84,19 @@ namespace TeamANumbrix.View
             this.Puzzle = new Puzzle(PuzzleDimensionSize);
             this.Puzzles = new Puzzles();
             this.Timer = new Stopwatch();
-            this.handlePuzzleSetup();
             this.InitializeComponent();
             this.ViewModel = new NumbrixViewModel();
             ApplicationView.PreferredLaunchViewSize = new Size {Width = ApplicationWidth, Height = ApplicationHeight};
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(ApplicationWidth, ApplicationHeight));
-            this.loadFirstPuzzle();
+            this.loadPuzzle();
         }
 
         #endregion
 
         #region Methods
 
-        private void loadFirstPuzzle()
+        private void loadPuzzle()
         {
             this.handleModifiableCells();
         }
@@ -121,13 +115,6 @@ namespace TeamANumbrix.View
             }
 
             return data;
-        }
-
-        private void handlePuzzleSetup()
-        {
-            //chosenPuzzle variable will store the users puzzle pick and then set this.Puzzle equal to it
-            var chosenPuzzle = this.Puzzles.AvailablePuzzles[CurrentPuzzle.ToString()];
-            this.Puzzle = chosenPuzzle;
         }
 
         private bool handleSolvePuzzle()
@@ -218,9 +205,12 @@ namespace TeamANumbrix.View
 
         private void LoadPuzzleButton_Click(object sender, RoutedEventArgs e)
         {
-            this.loadFirstPuzzle();
+            var puzzle = (Puzzle) this.puzzlePickerComboBox.SelectionBoxItem;
+            this.Puzzle = puzzle;
+            this.loadPuzzle();
             this.Timer.Start();
             this.checkPuzzleTextBlock.Visibility = Visibility.Collapsed;
+            this.resetDisplayToSelectedPuzzle();
         }
 
         #endregion
@@ -252,8 +242,8 @@ namespace TeamANumbrix.View
 
         private void resetDisplayToSelectedPuzzle()
         {
-            //this line should become = to this.selectedPuzzle
-            this.Puzzle = this.Puzzles.AvailablePuzzles[CurrentPuzzle.ToString()];
+            var puzzle = (Puzzle)this.puzzlePickerComboBox.SelectionBoxItem;
+            this.Puzzle = puzzle;
 
             foreach (var currentCell in this.Puzzle)
             {
