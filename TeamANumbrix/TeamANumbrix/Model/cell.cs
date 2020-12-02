@@ -31,7 +31,7 @@ namespace TeamANumbrix.Model
         /// <value>
         ///     <c>true</c> if this instance has n; otherwise, <c>false</c>.
         /// </value>
-        public bool HasCellToNorth { get; set; }
+        public bool HasN { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether this instance has s.
@@ -39,7 +39,7 @@ namespace TeamANumbrix.Model
         /// <value>
         ///     <c>true</c> if this instance has s; otherwise, <c>false</c>.
         /// </value>
-        public bool HasCellToSouth { get; set; }
+        public bool HasS { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether this instance has e.
@@ -47,7 +47,7 @@ namespace TeamANumbrix.Model
         /// <value>
         ///     <c>true</c> if this instance has e; otherwise, <c>false</c>.
         /// </value>
-        public bool HasCellToEast { get; set; }
+        public bool HasE { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether this instance has w.
@@ -55,7 +55,7 @@ namespace TeamANumbrix.Model
         /// <value>
         ///     <c>true</c> if this instance has w; otherwise, <c>false</c>.
         /// </value>
-        public bool HasCellToWest { get; set; }
+        public bool HasW { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether this instance is changeable.
@@ -63,7 +63,7 @@ namespace TeamANumbrix.Model
         /// <value>
         ///     <c>true</c> if this instance is changeable; otherwise, <c>false</c>.
         /// </value>
-        public bool IsValueStatic { get; set; }
+        public bool IsChangeable { get; set; }
 
         #endregion
 
@@ -74,16 +74,16 @@ namespace TeamANumbrix.Model
         /// </summary>
         /// <param name="position">The position.</param>
         /// <param name="value">The value.</param>
-        /// <param name="hasCellToNorth">if set to <c>true</c> [has n].</param>
-        /// <param name="hasCellToSouth">if set to <c>true</c> [has s].</param>
-        /// <param name="hasCellToEast">if set to <c>true</c> [has e].</param>
-        /// <param name="hasCellToWest">if set to <c>true</c> [has w].</param>
+        /// <param name="hasN">if set to <c>true</c> [has n].</param>
+        /// <param name="hasS">if set to <c>true</c> [has s].</param>
+        /// <param name="hasE">if set to <c>true</c> [has e].</param>
+        /// <param name="hasW">if set to <c>true</c> [has w].</param>
         /// <exception cref="ArgumentException">
         ///     position cannot be less than 0
         ///     or
         ///     value cannot be less than 0
         /// </exception>
-        public Cell(int position, int value, bool hasCellToNorth, bool hasCellToSouth, bool hasCellToEast, bool hasCellToWest)
+        public Cell(int position, int value, bool hasN, bool hasS, bool hasE, bool hasW)
         {
             if (position < 0)
             {
@@ -97,11 +97,11 @@ namespace TeamANumbrix.Model
 
             this.Position = position;
             this.Value = value;
-            this.HasCellToNorth = hasCellToNorth;
-            this.HasCellToSouth = hasCellToSouth;
-            this.HasCellToEast = hasCellToEast;
-            this.HasCellToWest = hasCellToWest;
-            this.IsValueStatic = true;
+            this.HasN = hasN;
+            this.HasS = hasS;
+            this.HasE = hasE;
+            this.HasW = hasW;
+            this.IsChangeable = true;
         }
 
         #endregion
@@ -109,12 +109,10 @@ namespace TeamANumbrix.Model
         #region Methods
 
         /// <summary>
-        ///     Compares to by position.
+        ///     Compares to.
         /// </summary>
         /// <param name="otherCell">The other cell.</param>
-        /// <returns>
-        ///     int = 0 if equal, 1 or -1 otherwise
-        /// </returns>
+        /// <returns></returns>
         public int CompareTo(Cell otherCell)
         {
             return this.Position.CompareTo(otherCell.Position);
@@ -129,7 +127,7 @@ namespace TeamANumbrix.Model
         public override string ToString()
         {
             return
-                $"Cell :: {this.Position} has value : {this.Value} N: {this.HasCellToNorth} S: {this.HasCellToSouth} E: {this.HasCellToEast} W: {this.HasCellToWest} IsValueStatic: {this.IsValueStatic}";
+                $"Cell :: {this.Position} has value : {this.Value} N: {this.HasN} S: {this.HasS} E: {this.HasE} W: {this.HasW} IsChangeable: {this.IsChangeable}";
         }
 
         #endregion
