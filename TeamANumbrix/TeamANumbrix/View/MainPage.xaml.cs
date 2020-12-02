@@ -123,26 +123,6 @@ namespace TeamANumbrix.View
             return data;
         }
 
-        private static IEnumerable<T> findVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-        {
-            if (depObj != null)
-            {
-                for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    var child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                    {
-                        yield return (T) child;
-                    }
-
-                    foreach (var childOfChild in findVisualChildren<T>(child))
-                    {
-                        yield return childOfChild;
-                    }
-                }
-            }
-        }
-
         private void handlePuzzleSetup()
         {
             //chosenPuzzle variable will store the users puzzle pick and then set this.Puzzle equal to it
@@ -245,6 +225,26 @@ namespace TeamANumbrix.View
         private void resetButton_Click(object sender, RoutedEventArgs e)
         {
             this.resetDisplayToSelectedPuzzle();
+        }
+
+        private static IEnumerable<T> findVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    var child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (var childOfChild in findVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
         }
 
         private void resetDisplayToSelectedPuzzle()

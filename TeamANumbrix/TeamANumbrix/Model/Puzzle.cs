@@ -8,7 +8,7 @@ using System.Threading;
 namespace TeamANumbrix.Model
 {
     /// <summary>
-    ///     The grid class
+    ///     The Puzzle Class
     /// </summary>
     /// <seealso cref="Cell" />
     public class Puzzle : ICollection<Cell>
@@ -16,7 +16,7 @@ namespace TeamANumbrix.Model
         #region Properties
 
         /// <summary>
-        ///     Gets the cells.
+        ///     Gets the cells of the puzzle.
         /// </summary>
         /// <value>
         ///     The cells.
@@ -29,26 +29,34 @@ namespace TeamANumbrix.Model
         public int Count => this.Cells.Count;
 
         /// <summary>
-        /// Gets or sets the puzzle number.
+        /// Gets or sets the name of the puzzle.
         /// </summary>
         /// <value>
-        /// The puzzle number.
+        /// The name of the puzzle.
+        /// </value>
+        public string PuzzleName { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the puzzle number.
+        /// </summary>
+        /// <value>
+        ///     The puzzle number.
         /// </value>
         public string UnmodifiableCells { get; set; }
 
         /// <summary>
-        ///     Gets or sets the size of the dimension.
+        ///     Gets or sets the size of the puzzle dimensions.
         /// </summary>
         /// <value>
-        ///     The size of the dimension.
+        ///     The size of the puzzle dimensions.
         /// </value>
         public int DimensionSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the timer.
+        ///     Gets or sets the timer.
         /// </summary>
         /// <value>
-        /// The timer.
+        ///     The timer.
         /// </value>
         public Timer Timer { get; set; }
 
@@ -68,8 +76,9 @@ namespace TeamANumbrix.Model
         #endregion
 
         #region Constructors
+
         /// <summary>
-        /// Instantiates a new Puzzle object
+        ///     Instantiates a new Puzzle object
         /// </summary>
         /// <param name="dimensionSize">Size of the dimension.</param>
         public Puzzle(int dimensionSize)
@@ -93,11 +102,27 @@ namespace TeamANumbrix.Model
         /// <summary>
         /// Instantiates a new Puzzle object
         /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="unmodifiableCells">The puzzle identifier.</param>
+        /// <param name="dimensionSize">Size of the dimension.</param>
+        public Puzzle(string puzzleName, string unmodifiableCells, int dimensionSize)
+        {
+            this.PuzzleName = puzzleName;
+            this.Cells = new Collection<Cell>();
+            this.UnmodifiableCells = unmodifiableCells;
+            this.DimensionSize = dimensionSize;
+        }
+
+        /// <summary>
+        /// Instantiates a new Puzzle object
+        /// </summary>
+        /// <param name="name">The name.</param>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
         /// <param name="timer">The timer.</param>
-        public Puzzle(string unmodifiableCells, int dimensionSize, Timer timer)
+        public Puzzle(string puzzleName, string unmodifiableCells, int dimensionSize, Timer timer)
         {
+            this.PuzzleName = puzzleName;
             this.Cells = new Collection<Cell>();
             this.UnmodifiableCells = unmodifiableCells;
             this.DimensionSize = dimensionSize;
@@ -242,6 +267,12 @@ namespace TeamANumbrix.Model
             {
                 this.Cells.Remove(currentCell);
             }
+        }
+
+         
+        public override string ToString()
+        {
+            return this.PuzzleName;
         }
 
         #endregion
