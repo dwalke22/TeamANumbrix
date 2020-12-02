@@ -188,7 +188,7 @@ namespace TeamANumbrix.View
         {
             foreach (var currentCell in this.Puzzle)
             {
-                if (currentCell.IsChangeable)
+                if (currentCell.IsValueStatic)
                 {
                     continue;
                 }
