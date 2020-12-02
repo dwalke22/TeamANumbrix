@@ -182,16 +182,19 @@ namespace TeamANumbrix.View
 
                 foreach (var textBox in findVisualChildren<TextBox>(Parent))
                 {
-                    var textBoxPosition = textBox.Name;
-                    var cellValue = textBoxPosition.Split("cell");
-
-                    if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
+                    if (textBox.Name.Contains("cell"))
                     {
-                        continue;
-                    }
+                        var textBoxPosition = textBox.Name;
+                        var cellValue = textBoxPosition.Split("cell");
 
-                    textBox.Text = currentCell.Value.ToString();
-                    textBox.IsReadOnly = true;
+                        if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
+                        {
+                            continue;
+                        }
+
+                        textBox.Text = currentCell.Value.ToString();
+                        textBox.IsReadOnly = true;
+                    }
                 }
             }
         }
@@ -256,19 +259,22 @@ namespace TeamANumbrix.View
             {
                 foreach (var textBox in findVisualChildren<TextBox>(Parent))
                 {
-                    var textBoxPosition = textBox.Name;
-                    var cellValue = textBoxPosition.Split("cell");
-
-                    if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
+                    if (textBox.Name.Contains("cell"))
                     {
-                        continue;
-                    }
+                        var textBoxPosition = textBox.Name;
+                        var cellValue = textBoxPosition.Split("cell");
 
-                    textBox.Text = currentCell.Value.ToString();
+                        if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
+                        {
+                            continue;
+                        }
 
-                    if (textBox.Text.Equals("0"))
-                    {
-                        textBox.Text = "";
+                        textBox.Text = currentCell.Value.ToString();
+
+                        if (textBox.Text.Equals("0"))
+                        {
+                            textBox.Text = "";
+                        }
                     }
                 }
             }
