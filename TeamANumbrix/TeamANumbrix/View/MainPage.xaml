@@ -77,7 +77,8 @@
         <Button x:Name="resetButton" Content="Reset" Margin="295,650,0,0" VerticalAlignment="Top" Height="50" Width="90" FontSize="24" Click="resetButton_Click"/>
         <Button x:Name="solvePuzzleButton" Content="Solve" Margin="460,650,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
         <TextBlock x:Name="checkPuzzleTextBlock" HorizontalAlignment="Left" Margin="170,730,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="50" FontSize="36" Padding="90,0,0,0" Visibility="Collapsed"/>
-        <Button x:Name="loadPuzzleButton" Content="Load Puzzle 1" Margin="600,47,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click"/>
+        <Button x:Name="loadPuzzleButton" Content="Load Puzzle" Margin="600,47,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click" Width="151" Height="50" FontSize="24"/>
+        <ComboBox x:Name="puzzlePickerComboBox" Margin="1042,84,0,0" Width="220" PlaceholderText="Select A Puzzle" FontSize="24"/>
 
 
     </Grid>
