@@ -26,6 +26,9 @@ namespace TeamANumbrix.ViewModel
 
         private Puzzle selectedPuzzle;
 
+        /// <summary>
+        ///     The Selected Puzzle property
+        /// </summary>
         public Puzzle SelectedPuzzle
         {
             get { return selectedPuzzle; }
@@ -38,6 +41,9 @@ namespace TeamANumbrix.ViewModel
 
         private ObservableCollection<HighScore> highScores;
 
+        /// <summary>
+        ///     The high score property
+        /// </summary>
         public ObservableCollection<HighScore> HighScores
         {
             get { return this.highScores; }
@@ -58,8 +64,15 @@ namespace TeamANumbrix.ViewModel
             this.leaderBoard = new LeaderBoard();
         }
 
+        /// <summary>
+        ///     The Property changed event
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propertyName"></param>
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
