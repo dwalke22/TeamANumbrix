@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace TeamANumbrix.Model
 {
     /// <summary>
-    ///     The LeaderBoard Class
+    /// The LeaderBoard Class
     /// </summary>
     /// <seealso cref="System.Collections.Generic.IList{TeamANumbrix.Model.HighScore}" />
     public class LeaderBoard : IList<HighScore>
@@ -42,18 +42,6 @@ namespace TeamANumbrix.Model
         {
             get => this.highscores[index];
             set => this.highscores[index] = value;
-        }
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="LeaderBoard" /> class.
-        /// </summary>
-        public LeaderBoard()
-        {
-            this.highscores = new List<HighScore>();
         }
 
         #endregion
@@ -123,16 +111,6 @@ namespace TeamANumbrix.Model
             return this.highscores.Contains(highScore);
         }
 
-        /// <summary>
-        ///     Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"></see> to an
-        ///     <see cref="T:System.Array"></see>, starting at a particular <see cref="T:System.Array"></see> index.
-        /// </summary>
-        /// <param name="array">
-        ///     The one-dimensional <see cref="T:System.Array"></see> that is the destination of the elements
-        ///     copied from <see cref="T:System.Collections.Generic.ICollection`1"></see>. The <see cref="T:System.Array"></see>
-        ///     must have zero-based indexing.
-        /// </param>
-        /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public void CopyTo(HighScore[] array, int arrayIndex)
         {
             for (var i = 0; i < this.Count; i++)
@@ -219,6 +197,7 @@ namespace TeamANumbrix.Model
 
         public void sortByHighScore()
         {
+
         }
 
         #endregion
