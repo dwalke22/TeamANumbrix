@@ -48,14 +48,6 @@ namespace TeamANumbrix.View
         public Puzzle Puzzle { get; set; }
 
         /// <summary>
-        /// Gets or sets the selected puzzle.
-        /// </summary>
-        /// <value>
-        /// The selected puzzle.
-        /// </value>
-        public Puzzle SelectedPuzzle { get; set; }
-
-        /// <summary>
         /// Gets or sets the puzzles.
         /// </summary>
         /// <value>
@@ -72,6 +64,14 @@ namespace TeamANumbrix.View
         ///     The View Model object
         /// </summary>
         public NumbrixViewModel ViewModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected puzzle.
+        /// </summary>
+        /// <value>
+        /// The selected puzzle.
+        /// </value>
+        public Puzzle SelectedPuzzle => (Puzzle)this.puzzlePickerComboBox.SelectedValue; 
 
         #endregion
 
@@ -195,11 +195,31 @@ namespace TeamANumbrix.View
                 this.Timer.Stop();
                 this.timerTextBlock.Text = this.Timer.Elapsed.ToString();
                 this.Timer.Reset();
+
+                this.displayNextPuzzle();
             }
             else
             {
                 this.checkPuzzleTextBlock.Visibility = Visibility.Visible;
                 this.checkPuzzleTextBlock.Text = "Incorrect!!";
+            }
+        }
+
+        private void displayNextPuzzle()
+        {
+            var puzzles = this.Puzzles.AvailablePuzzles.Values.ToList();
+
+            if (puzzles.IndexOf(this.Puzzle) == this.Puzzles.AvailablePuzzles.Count)
+            {
+                this.Puzzle = puzzles[0];
+                this.resetDisplay();
+                this.puzzlePickerComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                var nextIndex = puzzles.IndexOf(this.Puzzle) + 1;
+                this.Puzzle = puzzles[nextIndex];
+                this.resetDisplay();
             }
         }
 
@@ -235,6 +255,33 @@ namespace TeamANumbrix.View
                     foreach (var childOfChild in findVisualChildren<T>(child))
                     {
                         yield return childOfChild;
+                    }
+                }
+            }
+        }
+
+        private void resetDisplay()
+        {
+            foreach (var currentCell in this.Puzzle)
+            {
+                foreach (var textBox in findVisualChildren<TextBox>(Parent))
+                {
+                    if (textBox.Name.Contains("cell"))
+                    {
+                        var textBoxPosition = textBox.Name;
+                        var cellValue = textBoxPosition.Split("cell");
+
+                        if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
+                        {
+                            continue;
+                        }
+
+                        textBox.Text = currentCell.Value.ToString();
+
+                        if (textBox.Text.Equals("0"))
+                        {
+                            textBox.Text = "";
+                        }
                     }
                 }
             }
