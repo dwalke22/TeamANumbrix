@@ -4,8 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:TeamANumbrix.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="1497">
+
+    <Page.DataContext>
+        <viewModel:NumbrixViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" Margin="210,30,0,0" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Width="258" Height="55" FontSize="48" CharacterSpacing="200"/>
@@ -78,7 +83,7 @@
         <Button x:Name="solvePuzzleButton" Content="Solve" Margin="460,650,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
         <TextBlock x:Name="checkPuzzleTextBlock" HorizontalAlignment="Left" Margin="170,730,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="50" FontSize="36" Padding="90,0,0,0" Visibility="Collapsed"/>
         <Button x:Name="loadPuzzleButton" Content="Load Puzzle" Margin="600,47,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click" Width="151" Height="50" FontSize="24"/>
-        <ComboBox x:Name="puzzlePickerComboBox" Margin="1042,84,0,0" Width="220" PlaceholderText="Select A Puzzle" FontSize="24"/>
+        <ComboBox x:Name="puzzlePickerComboBox" Margin="1042,84,0,0" Width="220" PlaceholderText="Select A Puzzle" FontSize="24" ItemsSource="{Binding Path=Puzzles.AvailablePuzzles, Mode=OneWay}"/>
 
 
     </Grid>

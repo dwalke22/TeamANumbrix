@@ -7,7 +7,9 @@ namespace TeamANumbrix.Model
     /// <summary>
     ///     The LeaderBoard Class
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.IList{TeamANumbrix.Model.HighScore}" />
+    /// <seealso>
+    ///     <cref>System.Collections.Generic.IList{TeamANumbrix.Model.HighScore}</cref>
+    /// </seealso>
     public class LeaderBoard : IList<HighScore>
     {
         #region Properties
@@ -18,12 +20,12 @@ namespace TeamANumbrix.Model
         /// <value>
         ///     The highscores.
         /// </value>
-        private IList<HighScore> highscores { get; }
+        private IList<HighScore> Highscores { get; }
 
         /// <summary>
         ///     Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"></see>.
         /// </summary>
-        public int Count => this.highscores.Count;
+        public int Count => this.Highscores.Count;
 
         /// <summary>
         ///     Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only.
@@ -40,8 +42,8 @@ namespace TeamANumbrix.Model
         /// <returns></returns>
         public HighScore this[int index]
         {
-            get => this.highscores[index];
-            set => this.highscores[index] = value;
+            get => this.Highscores[index];
+            set => this.Highscores[index] = value;
         }
 
         #endregion
@@ -53,7 +55,7 @@ namespace TeamANumbrix.Model
         /// </summary>
         public LeaderBoard()
         {
-            this.highscores = new List<HighScore>();
+            this.Highscores = new List<HighScore>();
         }
 
         #endregion
@@ -68,7 +70,7 @@ namespace TeamANumbrix.Model
         /// </returns>
         public IEnumerator<HighScore> GetEnumerator()
         {
-            return this.highscores.GetEnumerator();
+            return this.Highscores.GetEnumerator();
         }
 
         /// <summary>
@@ -94,7 +96,7 @@ namespace TeamANumbrix.Model
                 throw new NullReferenceException();
             }
 
-            this.highscores.Add(highScore);
+            this.Highscores.Add(highScore);
         }
 
         /// <summary>
@@ -102,7 +104,7 @@ namespace TeamANumbrix.Model
         /// </summary>
         public void Clear()
         {
-            this.highscores.Clear();
+            this.Highscores.Clear();
         }
 
         /// <summary>
@@ -120,7 +122,7 @@ namespace TeamANumbrix.Model
                 throw new NullReferenceException();
             }
 
-            return this.highscores.Contains(highScore);
+            return this.Highscores.Contains(highScore);
         }
 
         /// <summary>
@@ -137,7 +139,7 @@ namespace TeamANumbrix.Model
         {
             for (var i = 0; i < this.Count; i++)
             {
-                array.SetValue(this.highscores[i], arrayIndex++);
+                array.SetValue(this.Highscores[i], arrayIndex++);
             }
         }
 
@@ -159,7 +161,7 @@ namespace TeamANumbrix.Model
                 throw new NullReferenceException();
             }
 
-            return this.highscores.Contains(highScore) && this.highscores.Remove(highScore);
+            return this.Highscores.Contains(highScore) && this.Highscores.Remove(highScore);
         }
 
         /// <summary>
@@ -176,10 +178,10 @@ namespace TeamANumbrix.Model
 
             for (var i = this.Count - 1; i > index; i--)
             {
-                this.highscores[i] = this.highscores[i - 1];
+                this.Highscores[i] = this.Highscores[i - 1];
             }
 
-            this.highscores[index] = highScore;
+            this.Highscores[index] = highScore;
         }
 
         /// <summary>
@@ -195,7 +197,7 @@ namespace TeamANumbrix.Model
 
             for (var i = index; i < this.Count - 1; i++)
             {
-                this.highscores[i] = this.highscores[i + 1];
+                this.Highscores[i] = this.Highscores[i + 1];
             }
         }
 
@@ -208,7 +210,7 @@ namespace TeamANumbrix.Model
         {
             for (var i = 0; i < this.Count; i++)
             {
-                if (this.highscores[i] == highScore)
+                if (this.Highscores[i] == highScore)
                 {
                     return i;
                 }
@@ -217,7 +219,10 @@ namespace TeamANumbrix.Model
             return -1;
         }
 
-        public void sortByHighScore()
+        /// <summary>
+        ///     Sorts the list by High Score
+        /// </summary>
+        public void SortByHighScore()
         {
         }
 
