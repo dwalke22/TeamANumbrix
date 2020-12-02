@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using TeamANumbrix.Model;
 using TeamANumbrix.Utility;
+using TeamANumbrix.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -72,6 +73,11 @@ namespace TeamANumbrix.View
         /// </summary>
         public Stopwatch Timer { get; }
 
+        /// <summary>
+        ///     The View Model object
+        /// </summary>
+        public NumbrixViewModel ViewModel { get; set; }
+
         #endregion
 
         #region Constructors
@@ -85,6 +91,7 @@ namespace TeamANumbrix.View
             this.Timer = new Stopwatch();
             this.handlePuzzleSetup();
             this.InitializeComponent();
+            this.ViewModel = new NumbrixViewModel();
             ApplicationView.PreferredLaunchViewSize = new Size {Width = ApplicationWidth, Height = ApplicationHeight};
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(ApplicationWidth, ApplicationHeight));
@@ -114,26 +121,6 @@ namespace TeamANumbrix.View
             }
 
             return data;
-        }
-
-        private static IEnumerable<T> findVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-        {
-            if (depObj != null)
-            {
-                for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    var child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                    {
-                        yield return (T) child;
-                    }
-
-                    foreach (var childOfChild in findVisualChildren<T>(child))
-                    {
-                        yield return childOfChild;
-                    }
-                }
-            }
         }
 
         private void handlePuzzleSetup()
@@ -216,7 +203,7 @@ namespace TeamANumbrix.View
                 this.checkPuzzleTextBlock.Visibility = Visibility.Visible;
                 this.checkPuzzleTextBlock.Text = "Solved!!";
                 this.Timer.Stop();
-                this.timerTextBlock.Text = this.Timer.ToString();
+                this.timerTextBlock.Text = this.Timer.Elapsed.ToString();
                 this.Timer.Reset();
             }
             else
@@ -238,6 +225,26 @@ namespace TeamANumbrix.View
         private void resetButton_Click(object sender, RoutedEventArgs e)
         {
             this.resetDisplayToSelectedPuzzle();
+        }
+
+        private static IEnumerable<T> findVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    var child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (var childOfChild in findVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
         }
 
         private void resetDisplayToSelectedPuzzle()

@@ -126,10 +126,12 @@
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Puzzle.cs" />
     <Compile Include="Model\Puzzles.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utility\GeneralComparer.cs" />
     <Compile Include="Utility\PuzzleCreator.cs" />
     <Compile Include="Utility\PuzzleLoader.cs" />
     <Compile Include="Utility\PuzzleSolver.cs" />
+    <Compile Include="ViewModel\NumbrixViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -163,6 +165,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.11</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>6.1.1</Version>
     </PackageReference>
     <PackageReference Include="NuGet.Frameworks">
       <Version>5.8.0</Version>
