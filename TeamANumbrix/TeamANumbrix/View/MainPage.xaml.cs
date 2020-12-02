@@ -209,14 +209,18 @@ namespace TeamANumbrix.View
         {
             var puzzles = this.Puzzles.AvailablePuzzles.Values.ToList();
 
-            if (puzzles.IndexOf(this.Puzzle) == this.Puzzles.AvailablePuzzles.Count)
+            var currentPuzzle = this.Puzzles.FindPuzzleByName(this.Puzzle.PuzzleName);
+            var lastPuzzleNumber = (this.Puzzles.AvailablePuzzles.Count).ToString();
+            var lastPuzzle = this.Puzzles.AvailablePuzzles[lastPuzzleNumber];
+
+            if (this.Puzzle.PuzzleName.Equals(lastPuzzle.PuzzleName))
             {
                 this.Puzzle = puzzles[0];
                 this.resetDisplay();
             }
             else
             {
-                var nextIndex = puzzles.IndexOf(this.Puzzle) + 1;
+                var nextIndex = (puzzles.IndexOf(currentPuzzle)) + 1;
                 this.Puzzle = puzzles[nextIndex];
                 this.resetDisplay();
             }

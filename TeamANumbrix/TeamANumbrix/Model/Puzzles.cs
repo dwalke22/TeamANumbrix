@@ -174,6 +174,28 @@ namespace TeamANumbrix.Model
             return positions;
         }
 
+
+        /// <summary>
+        /// Finds the name of the puzzle by.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        /// Puzzle the puzzle to be found
+        /// </returns>
+        public Puzzle FindPuzzleByName(string name)
+        {
+            Puzzle puzzle = null;
+
+            var puzzles = this.AvailablePuzzles.Values.ToList();
+
+            foreach (var currentPuzzle in puzzles.Where(currentPuzzle => currentPuzzle.PuzzleName.Equals(name)))
+            {
+                puzzle = currentPuzzle;
+            }
+
+            return puzzle;
+        }
+
         #endregion
     }
 }

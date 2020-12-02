@@ -269,7 +269,6 @@ namespace TeamANumbrix.Model
             }
         }
 
-         
         public override string ToString()
         {
             return this.PuzzleName;
