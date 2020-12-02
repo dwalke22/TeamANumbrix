@@ -5,11 +5,9 @@ using System.Collections.Generic;
 namespace TeamANumbrix.Model
 {
     /// <summary>
-    ///     The LeaderBoard Class
+    /// The LeaderBoard Class
     /// </summary>
-    /// <seealso>
-    ///     <cref>System.Collections.Generic.IList{TeamANumbrix.Model.HighScore}</cref>
-    /// </seealso>
+    /// <seealso cref="System.Collections.Generic.IList{TeamANumbrix.Model.HighScore}" />
     public class LeaderBoard : IList<HighScore>
     {
         #region Properties
@@ -20,12 +18,12 @@ namespace TeamANumbrix.Model
         /// <value>
         ///     The highscores.
         /// </value>
-        private IList<HighScore> Highscores { get; }
+        private IList<HighScore> highscores { get; }
 
         /// <summary>
         ///     Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"></see>.
         /// </summary>
-        public int Count => this.Highscores.Count;
+        public int Count => this.highscores.Count;
 
         /// <summary>
         ///     Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only.
@@ -42,20 +40,8 @@ namespace TeamANumbrix.Model
         /// <returns></returns>
         public HighScore this[int index]
         {
-            get => this.Highscores[index];
-            set => this.Highscores[index] = value;
-        }
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="LeaderBoard" /> class.
-        /// </summary>
-        public LeaderBoard()
-        {
-            this.Highscores = new List<HighScore>();
+            get => this.highscores[index];
+            set => this.highscores[index] = value;
         }
 
         #endregion
@@ -70,7 +56,7 @@ namespace TeamANumbrix.Model
         /// </returns>
         public IEnumerator<HighScore> GetEnumerator()
         {
-            return this.Highscores.GetEnumerator();
+            return this.highscores.GetEnumerator();
         }
 
         /// <summary>
@@ -96,7 +82,7 @@ namespace TeamANumbrix.Model
                 throw new NullReferenceException();
             }
 
-            this.Highscores.Add(highScore);
+            this.highscores.Add(highScore);
         }
 
         /// <summary>
@@ -104,7 +90,7 @@ namespace TeamANumbrix.Model
         /// </summary>
         public void Clear()
         {
-            this.Highscores.Clear();
+            this.highscores.Clear();
         }
 
         /// <summary>
@@ -122,24 +108,14 @@ namespace TeamANumbrix.Model
                 throw new NullReferenceException();
             }
 
-            return this.Highscores.Contains(highScore);
+            return this.highscores.Contains(highScore);
         }
 
-        /// <summary>
-        ///     Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"></see> to an
-        ///     <see cref="T:System.Array"></see>, starting at a particular <see cref="T:System.Array"></see> index.
-        /// </summary>
-        /// <param name="array">
-        ///     The one-dimensional <see cref="T:System.Array"></see> that is the destination of the elements
-        ///     copied from <see cref="T:System.Collections.Generic.ICollection`1"></see>. The <see cref="T:System.Array"></see>
-        ///     must have zero-based indexing.
-        /// </param>
-        /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public void CopyTo(HighScore[] array, int arrayIndex)
         {
             for (var i = 0; i < this.Count; i++)
             {
-                array.SetValue(this.Highscores[i], arrayIndex++);
+                array.SetValue(this.highscores[i], arrayIndex++);
             }
         }
 
@@ -161,7 +137,7 @@ namespace TeamANumbrix.Model
                 throw new NullReferenceException();
             }
 
-            return this.Highscores.Contains(highScore) && this.Highscores.Remove(highScore);
+            return this.highscores.Contains(highScore) && this.highscores.Remove(highScore);
         }
 
         /// <summary>
@@ -178,10 +154,10 @@ namespace TeamANumbrix.Model
 
             for (var i = this.Count - 1; i > index; i--)
             {
-                this.Highscores[i] = this.Highscores[i - 1];
+                this.highscores[i] = this.highscores[i - 1];
             }
 
-            this.Highscores[index] = highScore;
+            this.highscores[index] = highScore;
         }
 
         /// <summary>
@@ -197,7 +173,7 @@ namespace TeamANumbrix.Model
 
             for (var i = index; i < this.Count - 1; i++)
             {
-                this.Highscores[i] = this.Highscores[i + 1];
+                this.highscores[i] = this.highscores[i + 1];
             }
         }
 
@@ -210,7 +186,7 @@ namespace TeamANumbrix.Model
         {
             for (var i = 0; i < this.Count; i++)
             {
-                if (this.Highscores[i] == highScore)
+                if (this.highscores[i] == highScore)
                 {
                     return i;
                 }
@@ -219,11 +195,9 @@ namespace TeamANumbrix.Model
             return -1;
         }
 
-        /// <summary>
-        ///     Sorts the list by High Score
-        /// </summary>
-        public void SortByHighScore()
+        public void sortByHighScore()
         {
+
         }
 
         #endregion

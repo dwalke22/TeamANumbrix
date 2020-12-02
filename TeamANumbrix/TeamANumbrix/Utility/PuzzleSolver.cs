@@ -75,28 +75,28 @@ namespace TeamANumbrix.Utility
             var nextPosition = 0;
             var cellPosition = currentCell.Position;
 
-            if (currentCell.HasCellToNorth)
+            if (currentCell.HasN)
             {
                 if (this.checkNorthValue(currentCell))
                 {
                     nextPosition = cellPosition - this.Puzzle.DimensionSize;
                 }
             }
-            if (currentCell.HasCellToSouth)
+            if (currentCell.HasS)
             {
                 if (this.checkSouthValue(currentCell))
                 {
                     nextPosition = cellPosition + this.Puzzle.DimensionSize;
                 }
             }
-            if (currentCell.HasCellToEast)
+            if (currentCell.HasE)
             {
                 if (this.checkEastValue(currentCell))
                 {
                     nextPosition = cellPosition + 1;
                 }
             }
-            if (currentCell.HasCellToWest)
+            if (currentCell.HasW)
             {
                 if (this.checkWestValue(currentCell))
                 {
