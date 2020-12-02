@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using TeamANumbrix.Annotations;
 using TeamANumbrix.Model;
@@ -10,6 +11,8 @@ namespace TeamANumbrix.ViewModel
     /// </summary>
     public class NumbrixViewModel : INotifyPropertyChanged
     {
+        private LeaderBoard leaderBoard;
+
         private Puzzles puzzles;
 
         /// <summary>
@@ -33,6 +36,18 @@ namespace TeamANumbrix.ViewModel
             }
         }
 
+        private ObservableCollection<HighScore> highScores;
+
+        public ObservableCollection<HighScore> HighScores
+        {
+            get { return this.highScores; }
+            set
+            {
+                this.highScores = value;
+                this.OnPropertyChanged();
+            }
+        }
+
 
         /// <summary>
         ///     Instantiates a new View Model object
@@ -40,6 +55,7 @@ namespace TeamANumbrix.ViewModel
         public NumbrixViewModel()
         {
             this.puzzles = new Puzzles();
+            this.leaderBoard = new LeaderBoard();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
