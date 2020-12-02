@@ -29,10 +29,10 @@ namespace TeamANumbrix.Utility
         #region Properties
 
         /// <summary>
-        ///     Gets or sets the puzzles.
+        ///     Gets or sets the AvailablePuzzles.
         /// </summary>
         /// <value>
-        ///     The puzzles.
+        ///     The AvailablePuzzles.
         /// </value>
         public Dictionary<string, Puzzle> Puzzles { get; set; }
 
@@ -41,7 +41,7 @@ namespace TeamANumbrix.Utility
         #region Constructors
 
         /// <summary>
-        ///     Instanciates a new PuzzleLoader object
+        ///     Instantiates a new PuzzleLoader object
         /// </summary>
         public PuzzleLoader()
         {
@@ -90,69 +90,6 @@ namespace TeamANumbrix.Utility
                     }
                 }
             }
-        }
-
-        /// <summary>
-        ///     Creates the first puzzle of the application
-        /// </summary>
-        /// <returns>
-        ///     Returns the first puzzle object
-        /// </returns>
-        public static Puzzle CreateFirstPuzzle()
-        {
-            var puzzle1Txt = "1|1,8|8,10|29,15|34,18|48,22|52,27|60,46|55,43|58,50|44,64|15,55|39,57|22";
-            var puzzleData = puzzle1Txt.Split(',');
-
-            var positions = GetPositions(puzzleData);
-
-            var puzzle = new Puzzle(PuzzleDimensionSize);
-            var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
-            var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
-            handleModifiables(enumerable, positions);
-
-            puzzle.AddAll(enumerable.ToList());
-
-            return puzzle;
-        }
-
-        private static void handleModifiables(IEnumerable<Cell> cells, string positions)
-        {
-            var modifiedPositions = positions.Split(",");
-
-            var enumerable = cells as Cell[] ?? cells.ToArray();
-            foreach (var t in modifiedPositions)
-            {
-                foreach (var currentCell in enumerable.ToList())
-                {
-                    if (currentCell.Position == int.Parse(t))
-                    {
-                        currentCell.IsChangeable = false;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        ///     Gets the positions of in the puzzle of the numbers
-        /// </summary>
-        /// <param name="values"></param>
-        /// <returns></returns>
-        public static string GetPositions(string[] values)
-        {
-            var positions = string.Empty;
-            var listValues = values.ToList();
-
-            for (var i = 0; i < listValues.Count; i++)
-            {
-                var value = listValues[i].Split("|");
-                positions += value[0];
-                if (i != listValues.Count - 1)
-                {
-                    positions += ",";
-                }
-            }
-
-            return positions;
         }
 
         #endregion

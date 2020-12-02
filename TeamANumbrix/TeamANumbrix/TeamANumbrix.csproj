@@ -121,7 +121,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Cell.cs" />
+    <Compile Include="Model\HighScore.cs" />
+    <Compile Include="Model\LeaderBoard.cs" />
+    <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Puzzle.cs" />
+    <Compile Include="Model\Puzzles.cs" />
     <Compile Include="Utility\GeneralComparer.cs" />
     <Compile Include="Utility\PuzzleCreator.cs" />
     <Compile Include="Utility\PuzzleLoader.cs" />

@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 
 namespace TeamANumbrix.Model
 {
     /// <summary>
-    ///     The grid class
+    ///     The Puzzle Class
     /// </summary>
     /// <seealso cref="Cell" />
     public class Puzzle : ICollection<Cell>
@@ -15,7 +16,7 @@ namespace TeamANumbrix.Model
         #region Properties
 
         /// <summary>
-        ///     Gets the cells.
+        ///     Gets the cells of the puzzle.
         /// </summary>
         /// <value>
         ///     The cells.
@@ -28,12 +29,28 @@ namespace TeamANumbrix.Model
         public int Count => this.Cells.Count;
 
         /// <summary>
-        ///     Gets or sets the size of the dimension.
+        ///     Gets or sets the puzzle number.
         /// </summary>
         /// <value>
-        ///     The size of the dimension.
+        ///     The puzzle number.
+        /// </value>
+        public string UnmodifiableCells { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the size of the puzzle dimensions.
+        /// </summary>
+        /// <value>
+        ///     The size of the puzzle dimensions.
         /// </value>
         public int DimensionSize { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the timer.
+        /// </summary>
+        /// <value>
+        ///     The timer.
+        /// </value>
+        public Timer Timer { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only.
@@ -51,14 +68,41 @@ namespace TeamANumbrix.Model
         #endregion
 
         #region Constructors
+
         /// <summary>
         ///     Instantiates a new Puzzle object
         /// </summary>
-        /// <param name="dimensionSize"></param>
+        /// <param name="dimensionSize">Size of the dimension.</param>
         public Puzzle(int dimensionSize)
         {
             this.Cells = new Collection<Cell>();
             this.DimensionSize = dimensionSize;
+        }
+
+        /// <summary>
+        ///     Instantiates a new Puzzle object
+        /// </summary>
+        /// <param name="unmodifiableCells">The puzzle identifier.</param>
+        /// <param name="dimensionSize">Size of the dimension.</param>
+        public Puzzle(string unmodifiableCells, int dimensionSize)
+        {
+            this.Cells = new Collection<Cell>();
+            this.UnmodifiableCells = unmodifiableCells;
+            this.DimensionSize = dimensionSize;
+        }
+
+        /// <summary>
+        ///     Instantiates a new Puzzle object
+        /// </summary>
+        /// <param name="unmodifiableCells">The puzzle identifier.</param>
+        /// <param name="dimensionSize">Size of the dimension.</param>
+        /// <param name="timer">The timer.</param>
+        public Puzzle(string unmodifiableCells, int dimensionSize, Timer timer)
+        {
+            this.Cells = new Collection<Cell>();
+            this.UnmodifiableCells = unmodifiableCells;
+            this.DimensionSize = dimensionSize;
+            this.Timer = timer;
         }
 
         #endregion
@@ -92,6 +136,8 @@ namespace TeamANumbrix.Model
             {
                 throw new NullReferenceException("Cell cannot be null");
             }
+
+            this.Cells.Add(cell);
         }
 
         /// <summary>
