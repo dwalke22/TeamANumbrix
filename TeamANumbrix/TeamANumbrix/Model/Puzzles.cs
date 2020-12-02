@@ -70,7 +70,7 @@ namespace TeamANumbrix.Model
 
             var staticCellPositions = this.GetStaticCellPositions(puzzleData);
 
-            var puzzle = new Puzzle(staticCells, PuzzleDimensionSize);
+            var puzzle = new Puzzle("Puzzle One", staticCells, PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
             var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
             this.handleStaticValueCells(enumerable, staticCellPositions);
@@ -87,7 +87,7 @@ namespace TeamANumbrix.Model
 
             var positions = this.GetStaticCellPositions(puzzleData);
 
-            var puzzle = new Puzzle(staticCells, PuzzleDimensionSize);
+            var puzzle = new Puzzle("Puzzle Two", staticCells, PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
             var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
             this.handleStaticValueCells(enumerable, positions);
@@ -105,7 +105,7 @@ namespace TeamANumbrix.Model
 
             var positions = this.GetStaticCellPositions(puzzleData);
 
-            var puzzle = new Puzzle(staticCells, PuzzleDimensionSize);
+            var puzzle = new Puzzle("Puzzle Three", staticCells, PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
             var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
             this.handleStaticValueCells(enumerable, positions);
@@ -122,7 +122,7 @@ namespace TeamANumbrix.Model
 
             var positions = this.GetStaticCellPositions(puzzleData);
 
-            var puzzle = new Puzzle(staticCells, PuzzleDimensionSize);
+            var puzzle = new Puzzle("Puzzle Four", staticCells, PuzzleDimensionSize);
             var blankPuzzle = PuzzleCreator.CreatePuzzle(puzzleData);
             var enumerable = blankPuzzle as Cell[] ?? blankPuzzle.ToArray();
             this.handleStaticValueCells(enumerable, positions);

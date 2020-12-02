@@ -29,6 +29,14 @@ namespace TeamANumbrix.Model
         public int Count => this.Cells.Count;
 
         /// <summary>
+        /// Gets or sets the name of the puzzle.
+        /// </summary>
+        /// <value>
+        /// The name of the puzzle.
+        /// </value>
+        public string PuzzleName { get; set; }
+
+        /// <summary>
         ///     Gets or sets the puzzle number.
         /// </summary>
         /// <value>
@@ -80,25 +88,29 @@ namespace TeamANumbrix.Model
         }
 
         /// <summary>
-        ///     Instantiates a new Puzzle object
+        /// Instantiates a new Puzzle object
         /// </summary>
+        /// <param name="name">The name.</param>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
-        public Puzzle(string unmodifiableCells, int dimensionSize)
+        public Puzzle(string puzzleName, string unmodifiableCells, int dimensionSize)
         {
+            this.PuzzleName = puzzleName;
             this.Cells = new Collection<Cell>();
             this.UnmodifiableCells = unmodifiableCells;
             this.DimensionSize = dimensionSize;
         }
 
         /// <summary>
-        ///     Instantiates a new Puzzle object
+        /// Instantiates a new Puzzle object
         /// </summary>
+        /// <param name="name">The name.</param>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
         /// <param name="timer">The timer.</param>
-        public Puzzle(string unmodifiableCells, int dimensionSize, Timer timer)
+        public Puzzle(string puzzleName, string name, string unmodifiableCells, int dimensionSize, Timer timer)
         {
+            this.PuzzleName = puzzleName;
             this.Cells = new Collection<Cell>();
             this.UnmodifiableCells = unmodifiableCells;
             this.DimensionSize = dimensionSize;
@@ -243,6 +255,12 @@ namespace TeamANumbrix.Model
             {
                 this.Cells.Remove(currentCell);
             }
+        }
+
+         
+        public override string ToString()
+        {
+            return this.PuzzleName;
         }
 
         #endregion
