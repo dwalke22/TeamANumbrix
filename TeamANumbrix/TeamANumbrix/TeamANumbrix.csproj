@@ -130,6 +130,7 @@
     <Compile Include="Utility\PuzzleCreator.cs" />
     <Compile Include="Utility\PuzzleLoader.cs" />
     <Compile Include="Utility\PuzzleSolver.cs" />
+    <Compile Include="ViewModel\NumbrixViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

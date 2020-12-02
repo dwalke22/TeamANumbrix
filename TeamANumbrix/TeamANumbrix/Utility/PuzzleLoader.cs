@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Windows.Storage;
 using TeamANumbrix.Model;
 
@@ -18,11 +17,6 @@ namespace TeamANumbrix.Utility
         ///     The file name
         /// </summary>
         public const string FileName = "puzzleInput.bin";
-
-        /// <summary>
-        ///     The puzzle dimension size
-        /// </summary>
-        public const int PuzzleDimensionSize = 8;
 
         #endregion
 
