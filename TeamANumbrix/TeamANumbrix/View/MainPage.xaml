@@ -7,9 +7,13 @@
     xmlns:viewModel="using:TeamANumbrix.ViewModel"
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="1200">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="1400" Height="1001">
 
-    <Grid Width="1200">
+    <Page.DataContext>
+        <viewModel:NumbrixViewModel/>
+    </Page.DataContext>
+
+    <Grid Width="1400">
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" Margin="210,30,0,0" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Height="55" FontSize="48" CharacterSpacing="200"/>
         <TextBox x:Name="cell0"  HorizontalAlignment="Left" Margin="80,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36" extensions:TextBoxRegex.Regex="^[0-9]*$" extensions:TextBoxRegex.ValidationMode="Dynamic"/>
         <TextBox x:Name="cell1" HorizontalAlignment="Left" Margin="145,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Height="65" FontSize="36" extensions:TextBoxRegex.Regex="^[0-9]*$" extensions:TextBoxRegex.ValidationMode="Dynamic"/>
@@ -79,10 +83,10 @@
         <Button x:Name="resetButton" Content="Reset" Margin="287,731,0,0" VerticalAlignment="Top" Height="50" Width="90" FontSize="24" Click="resetButton_Click"/>
         <Button x:Name="solvePuzzleButton" Content="Solve" Margin="458,731,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
         <TextBlock x:Name="checkPuzzleTextBlock" HorizontalAlignment="Left" Margin="170,650,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="50" FontSize="36" Padding="90,0,0,0" Visibility="Collapsed"/>
-        <ComboBox x:Name="puzzlePickerComboBox" Margin="650,81,0,0" Width="275" PlaceholderText="Select A Puzzle" FontSize="24" ItemsSource="{Binding Path=Puzzles.AvailablePuzzles.Values, Mode=OneWay}" SelectedItem="{Binding Path=SelectedPuzzle, Mode=TwoWay}" Height="45"/>
-        <Button x:Name="loadPuzzleButton" Content="Load Puzzle" Margin="712.5,157,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click" Width="150" Height="50" FontSize="24"/>
-        <ListView x:Name="leaderBoardListView" ItemsSource="{Binding Path=HighScores, Mode=TwoWay}" BorderBrush="Black" BorderThickness="2" Width="275" Height="300" Margin="650,265,572,435"/>
-        <TextBlock x:Name="puzzleName" HorizontalAlignment="Left" Margin="182,855,0,0" Text="Select A Puzzle To Begin" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="40" FontSize="24"/>
+        <ComboBox x:Name="puzzlePickerComboBox" Margin="725,81,0,0" Width="275" PlaceholderText="Select A Puzzle" FontSize="24" ItemsSource="{Binding Path=Puzzles.AvailablePuzzles.Values, Mode=OneWay}" SelectedItem="{Binding Path=SelectedPuzzle, Mode=TwoWay}" Height="45"/>
+        <Button x:Name="loadPuzzleButton" Content="Load Puzzle" Margin="790,160,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click" Width="150" Height="50" FontSize="24"/>
+        <ListView x:Name="leaderBoardListView" ItemsSource="{Binding Path=HighScores, Mode=TwoWay}" BorderBrush="Black" BorderThickness="2" Width="275" Height="300" Margin="725,265,572,435"/>
+        <TextBlock x:Name="puzzleName" HorizontalAlignment="Left" Margin="725,20,0,0" Text="Select A Puzzle To Begin" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="40" FontSize="24"/>
 
     </Grid>
 </Page>
