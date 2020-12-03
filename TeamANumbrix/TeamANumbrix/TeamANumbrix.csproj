@@ -120,6 +120,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extension\ListExtension.cs" />
     <Compile Include="Model\Cell.cs" />
     <Compile Include="Model\HighScore.cs" />
     <Compile Include="Model\LeaderBoard.cs" />

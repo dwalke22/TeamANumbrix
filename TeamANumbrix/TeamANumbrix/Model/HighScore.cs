@@ -1,5 +1,4 @@
-﻿using System.Threading;
-
+﻿
 namespace TeamANumbrix.Model
 {
     /// <summary>
@@ -58,5 +57,14 @@ namespace TeamANumbrix.Model
         }
 
         #endregion
+
+        /// <summary>
+        ///     A string representation of the high score
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"{this.PlayerName}: {this.TimeRecord} Puzzle {this.PuzzleNumber}";
+        }
     }
 }

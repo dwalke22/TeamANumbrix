@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using TeamANumbrix.Annotations;
+using TeamANumbrix.Extension;
 using TeamANumbrix.Model;
 
 namespace TeamANumbrix.ViewModel
@@ -62,6 +63,7 @@ namespace TeamANumbrix.ViewModel
         {
             this.puzzles = new Puzzles();
             this.leaderBoard = new LeaderBoard();
+            this.highScores = this.leaderBoard.HighScores.ToObservableCollection();
         }
 
         /// <summary>
