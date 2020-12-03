@@ -23,6 +23,11 @@ namespace TeamANumbrix.Model
         private IList<HighScore> highscores { get; }
 
         /// <summary>
+        ///     The Collection of high scores
+        /// </summary>
+        public ICollection<HighScore> HighScores => highscores;
+
+        /// <summary>
         ///     Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"></see>.
         /// </summary>
         public int Count => this.highscores.Count;
@@ -56,6 +61,10 @@ namespace TeamANumbrix.Model
         public LeaderBoard()
         {
             this.highscores = new List<HighScore>();
+            this.highscores.Add(new HighScore("David", "1:31", 1));
+            this.HighScores.Add(new HighScore("Brian", "1:20", 2));
+            this.highscores.Add(new HighScore("Brian", "1:35", 3));
+            this.highscores.Add(new HighScore("Brian", "1:48", 4));
         }
 
         #endregion
