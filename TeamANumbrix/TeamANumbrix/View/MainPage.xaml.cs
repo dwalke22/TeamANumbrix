@@ -40,8 +40,6 @@ namespace TeamANumbrix.View
         /// </summary>
         public const int PuzzleDimensionSize = 8;
 
-
-
         #endregion
 
         #region Properties
@@ -63,6 +61,14 @@ namespace TeamANumbrix.View
         public Puzzles Puzzles { get; set; }
 
         /// <summary>
+        /// Gets or sets the leaderboard.
+        /// </summary>
+        /// <value>
+        /// The leader.
+        /// </value>
+        public LeaderBoard LeaderBoard { get; set; }
+
+        /// <summary>
         ///     The timer to be used for the stopwatch
         /// </summary>
         public Stopwatch Timer { get; }
@@ -80,14 +86,6 @@ namespace TeamANumbrix.View
         /// </summary>
         public NumbrixViewModel ViewModel { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the selected puzzle.
-        /// </summary>
-        /// <value>
-        ///     The selected puzzle.
-        /// </value>
-        public Puzzle SelectedPuzzle => (Puzzle) this.puzzlePickerComboBox.SelectedValue;
-
         #endregion
 
         #region Constructors
@@ -101,6 +99,7 @@ namespace TeamANumbrix.View
             this.Puzzles = new Puzzles();
             this.Player = new Player(this.Puzzle);
             this.Timer = new Stopwatch();
+            this.LeaderBoard = new LeaderBoard();
             this.InitializeComponent();
             this.ViewModel = new NumbrixViewModel();
             this.loadPuzzle();
@@ -226,11 +225,25 @@ namespace TeamANumbrix.View
                 this.Timer.Reset();
 
                 this.displayNextPuzzle();
+
+                this.handleAddHighScore();
             }
             else
             {
                 this.checkPuzzleTextBlock.Visibility = Visibility.Visible;
                 this.checkPuzzleTextBlock.Text = "Incorrect!!";
+            }
+        }
+
+        private void handleAddHighScore()
+        {
+            var puzzle = (Puzzle)this.puzzlePickerComboBox.SelectedValue;
+
+            if (puzzle != null)
+            {
+                var puzzleNumber = int.Parse(puzzle.PuzzleName.Replace("Puzzle ", ""));
+                var highScore = new HighScore(this.Player.PlayerName, "sample", puzzleNumber);
+                this.LeaderBoard.Add(highScore);
             }
         }
 
@@ -354,7 +367,6 @@ namespace TeamANumbrix.View
         {
             const string filenameXmlSerialization = "player.xml";
 
-            // XML serialization
             var folder = ApplicationData.Current.LocalFolder;
             var file = await folder.CreateFileAsync(filenameXmlSerialization, CreationCollisionOption.ReplaceExisting);
             var outStream = await file.OpenStreamForWriteAsync();

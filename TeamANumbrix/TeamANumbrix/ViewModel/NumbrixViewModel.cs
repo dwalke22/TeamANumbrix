@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using TeamANumbrix.Annotations;
 using TeamANumbrix.Model;
+using TeamANumbrix.Utility;
 
 namespace TeamANumbrix.ViewModel
 {
@@ -14,6 +15,8 @@ namespace TeamANumbrix.ViewModel
         private LeaderBoard leaderBoard;
 
         private Puzzles puzzles;
+
+        public RelayCommand SolvePuzzle { get; set; }
 
         /// <summary>
         ///     The collection of puzzles
@@ -62,6 +65,17 @@ namespace TeamANumbrix.ViewModel
         {
             this.puzzles = new Puzzles();
             this.leaderBoard = new LeaderBoard();
+            this.SolvePuzzle = new RelayCommand(solvePuzzle, canSolvePuzzle);
+        }
+
+        private bool canSolvePuzzle()
+        {
+            return true;
+        }
+
+        private void solvePuzzle()
+        {
+
         }
 
         /// <summary>
