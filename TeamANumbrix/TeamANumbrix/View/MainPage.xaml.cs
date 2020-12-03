@@ -117,6 +117,17 @@ namespace TeamANumbrix.View
             return data;
         }
 
+        private void resetTextBoxReadOnlys()
+        {
+            foreach (var textBox in findVisualChildren<TextBox>(Parent))
+            {
+                if (textBox.Name.Contains("cell"))
+                {
+                    textBox.IsReadOnly = false;
+                }
+            }
+        }
+
         private bool handleSolvePuzzle()
         {
             var cellValueData = this.getTextBoxData().Split(",");
@@ -228,6 +239,7 @@ namespace TeamANumbrix.View
 
         private void LoadPuzzleButton_Click(object sender, RoutedEventArgs e)
         {
+            this.resetTextBoxReadOnlys();
             var puzzle = (Puzzle) this.puzzlePickerComboBox.SelectionBoxItem;
             this.Puzzle = puzzle;
             this.loadPuzzle();
