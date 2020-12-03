@@ -8,10 +8,10 @@
         #region Properties
 
         /// <summary>
-        ///     Gets or sets the current puzzle.
+        ///     Gets or sets the currentPuzzle puzzle.
         /// </summary>
         /// <value>
-        ///     The current puzzle.
+        ///     The currentPuzzle puzzle.
         /// </value>
         public Puzzle CurrentPuzzle { get; set; }
 
@@ -23,6 +23,14 @@
         /// </value>
         public LeaderBoard LeaderBoard { get; set; }
 
+        /// <summary>
+        ///     Gets or sets the name of the player.
+        /// </summary>
+        /// <value>
+        ///     The name of the player.
+        /// </value>
+        public string PlayerName { get; set; }
+
         #endregion
 
         #region Constructors
@@ -30,11 +38,34 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="Player" /> class.
         /// </summary>
-        /// <param name="current">The current.</param>
-        /// <param name="leaderBoard">The leader board.</param>
-        public Player(Puzzle current, LeaderBoard leaderBoard)
+        /// <param name="currentPuzzle">The currentPuzzle.</param>
+        public Player(Puzzle currentPuzzle)
         {
-            this.CurrentPuzzle = current;
+            this.CurrentPuzzle = currentPuzzle;
+            this.PlayerName = "Player";
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Player" /> class.
+        /// </summary>
+        /// <param name="playerName">Name of the player.</param>
+        /// <param name="currentPuzzle">The currentPuzzle.</param>
+        public Player(string playerName, Puzzle currentPuzzle)
+        {
+            this.CurrentPuzzle = currentPuzzle;
+            this.PlayerName = playerName;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player" /> class.
+        /// </summary>
+        /// <param name="playerName">Name of the player.</param>
+        /// <param name="currentPuzzle">The currentPuzzle.</param>
+        /// <param name="leaderBoard">The leader board.</param>
+        public Player(string playerName, Puzzle currentPuzzle, LeaderBoard leaderBoard)
+        {
+            this.PlayerName = playerName;
+            this.CurrentPuzzle = currentPuzzle;
             this.LeaderBoard = leaderBoard;
         }
 

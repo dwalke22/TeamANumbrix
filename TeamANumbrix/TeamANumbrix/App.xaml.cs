@@ -56,7 +56,7 @@ namespace TeamANumbrix
                     //TODO: Load state from previously suspended application
                 }
 
-                // Place the frame in the current Window
+                // Place the frame in the currentPuzzle Window
                 Window.Current.Content = rootFrame;
             }
 
@@ -69,7 +69,7 @@ namespace TeamANumbrix
                     // parameter
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
-                // Ensure the current window is active
+                // Ensure the currentPuzzle window is active
                 Window.Current.Activate();
             }
         }

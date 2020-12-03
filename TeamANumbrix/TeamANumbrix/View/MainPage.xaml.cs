@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 using Windows.Foundation;
+using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,8 +24,9 @@ namespace TeamANumbrix.View
     public sealed partial class MainPage
     {
         #region Data members
+
         /// <summary>
-        ///  The default application height
+        ///     The default application height
         /// </summary>
         public const int ApplicationHeight = 800;
 
@@ -34,6 +39,8 @@ namespace TeamANumbrix.View
         ///     The default dimension size for the puzzle
         /// </summary>
         public const int PuzzleDimensionSize = 8;
+
+
 
         #endregion
 
@@ -48,10 +55,10 @@ namespace TeamANumbrix.View
         public Puzzle Puzzle { get; set; }
 
         /// <summary>
-        /// Gets or sets the puzzles.
+        ///     Gets or sets the puzzles.
         /// </summary>
         /// <value>
-        /// The puzzles.
+        ///     The puzzles.
         /// </value>
         public Puzzles Puzzles { get; set; }
 
@@ -61,21 +68,30 @@ namespace TeamANumbrix.View
         public Stopwatch Timer { get; }
 
         /// <summary>
+        /// Gets or sets the name of the player.
+        /// </summary>
+        /// <value>
+        /// The name of the player.
+        /// </value>
+        public Player Player { get; set; }
+
+        /// <summary>
         ///     The View Model object
         /// </summary>
         public NumbrixViewModel ViewModel { get; set; }
 
         /// <summary>
-        /// Gets or sets the selected puzzle.
+        ///     Gets or sets the selected puzzle.
         /// </summary>
         /// <value>
-        /// The selected puzzle.
+        ///     The selected puzzle.
         /// </value>
-        public Puzzle SelectedPuzzle => (Puzzle)this.puzzlePickerComboBox.SelectedValue; 
+        public Puzzle SelectedPuzzle => (Puzzle) this.puzzlePickerComboBox.SelectedValue;
 
         #endregion
 
         #region Constructors
+
         /// <summary>
         ///     Instantiates a new Main Page object
         /// </summary>
@@ -83,13 +99,15 @@ namespace TeamANumbrix.View
         {
             this.Puzzle = new Puzzle(PuzzleDimensionSize);
             this.Puzzles = new Puzzles();
+            this.Player = new Player(this.Puzzle);
             this.Timer = new Stopwatch();
             this.InitializeComponent();
             this.ViewModel = new NumbrixViewModel();
+            this.loadPuzzle();
+
             ApplicationView.PreferredLaunchViewSize = new Size {Width = ApplicationWidth, Height = ApplicationHeight};
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(ApplicationWidth, ApplicationHeight));
-            this.loadPuzzle();
         }
 
         #endregion
@@ -117,7 +135,7 @@ namespace TeamANumbrix.View
             return data;
         }
 
-        private void resetTextBoxReadOnlys()
+        private void resetTextBoxReadOnly()
         {
             foreach (var textBox in findVisualChildren<TextBox>(Parent))
             {
@@ -221,7 +239,7 @@ namespace TeamANumbrix.View
             var puzzles = this.Puzzles.AvailablePuzzles.Values.ToList();
 
             var currentPuzzle = this.Puzzles.FindPuzzleByName(this.Puzzle.PuzzleName);
-            var lastPuzzleNumber = (this.Puzzles.AvailablePuzzles.Count).ToString();
+            var lastPuzzleNumber = this.Puzzles.AvailablePuzzles.Count.ToString();
             var lastPuzzle = this.Puzzles.AvailablePuzzles[lastPuzzleNumber];
 
             if (this.Puzzle.PuzzleName.Equals(lastPuzzle.PuzzleName))
@@ -231,7 +249,7 @@ namespace TeamANumbrix.View
             }
             else
             {
-                var nextIndex = (puzzles.IndexOf(currentPuzzle)) + 1;
+                var nextIndex = puzzles.IndexOf(currentPuzzle) + 1;
                 this.Puzzle = puzzles[nextIndex];
                 this.resetDisplay();
             }
@@ -239,7 +257,7 @@ namespace TeamANumbrix.View
 
         private void LoadPuzzleButton_Click(object sender, RoutedEventArgs e)
         {
-            this.resetTextBoxReadOnlys();
+            this.resetTextBoxReadOnly();
             var puzzle = (Puzzle) this.puzzlePickerComboBox.SelectionBoxItem;
             this.Puzzle = puzzle;
             this.loadPuzzle();
@@ -247,8 +265,6 @@ namespace TeamANumbrix.View
             this.checkPuzzleTextBlock.Visibility = Visibility.Collapsed;
             this.resetDisplayToSelectedPuzzle();
         }
-
-        #endregion
 
         private void resetButton_Click(object sender, RoutedEventArgs e)
         {
@@ -264,7 +280,7 @@ namespace TeamANumbrix.View
                     var child = VisualTreeHelper.GetChild(depObj, i);
                     if (child != null && child is T)
                     {
-                        yield return (T)child;
+                        yield return (T) child;
                     }
 
                     foreach (var childOfChild in findVisualChildren<T>(child))
@@ -305,7 +321,7 @@ namespace TeamANumbrix.View
 
         private void resetDisplayToSelectedPuzzle()
         {
-            var puzzle = (Puzzle)this.puzzlePickerComboBox.SelectionBoxItem;
+            var puzzle = (Puzzle) this.puzzlePickerComboBox.SelectionBoxItem;
             this.Puzzle = puzzle;
             this.puzzleName.Text = this.Puzzle.PuzzleName;
 
@@ -333,5 +349,43 @@ namespace TeamANumbrix.View
                 }
             }
         }
+
+        private async void savePlayer()
+        {
+            const string filenameXmlSerialization = "player.xml";
+
+            // XML serialization
+            var folder = ApplicationData.Current.LocalFolder;
+            var file = await folder.CreateFileAsync(filenameXmlSerialization, CreationCollisionOption.ReplaceExisting);
+            var outStream = await file.OpenStreamForWriteAsync();
+
+            var player = new Player(this.Puzzle);
+
+            var serializer = new XmlSerializer(typeof(Player));
+            using (outStream)
+            {
+                serializer.Serialize(outStream, player);
+            }
+
+            outStream.Dispose();
+        }
+
+        private async void loadExitedGame()
+        {
+            const string filenameXmlSerialization = "player.xml";
+
+            var theFolder = ApplicationData.Current.LocalFolder;
+            var theFile = await theFolder.GetFileAsync(filenameXmlSerialization);
+            var inStream = await theFile.OpenStreamForReadAsync();
+
+            var deserializer = new XmlSerializer(typeof(Player));
+            var playerObjectFromXml = (Player)deserializer.Deserialize(inStream);
+
+            this.Player = playerObjectFromXml;
+
+            inStream.Dispose();
+        }
+
+        #endregion
     }
 }
