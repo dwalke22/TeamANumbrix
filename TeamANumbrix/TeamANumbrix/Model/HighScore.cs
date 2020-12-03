@@ -23,7 +23,7 @@ namespace TeamANumbrix.Model
         /// <value>
         ///     The time record.
         /// </value>
-        public Timer TimeRecord { get; set; }
+        public string TimeRecord { get; set; }
 
         /// <summary>
         ///     Gets or sets the puzzle number.
@@ -38,12 +38,19 @@ namespace TeamANumbrix.Model
         #region Constructors
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="HighScore"/> class.
+        /// </summary>
+        public HighScore()
+        {
+        }
+
+        /// <summary>
         ///     Initializes a new instance of the <see cref="HighScore" /> class.
         /// </summary>
         /// <param name="playerName">Name of the player.</param>
         /// <param name="timeRecord">The time record.</param>
         /// <param name="puzzleNumber">The puzzle number.</param>
-        public HighScore(string playerName, Timer timeRecord, int puzzleNumber)
+        public HighScore(string playerName, string timeRecord, int puzzleNumber)
         {
             this.PlayerName = playerName;
             this.TimeRecord = timeRecord;

@@ -359,6 +359,7 @@ namespace TeamANumbrix.View
             var file = await folder.CreateFileAsync(filenameXmlSerialization, CreationCollisionOption.ReplaceExisting);
             var outStream = await file.OpenStreamForWriteAsync();
 
+            this.setCellsToTextBoxes();
             var player = new Player(this.Puzzle);
 
             var serializer = new XmlSerializer(typeof(Player));
@@ -368,6 +369,18 @@ namespace TeamANumbrix.View
             }
 
             outStream.Dispose();
+        }
+
+        private void setCellsToTextBoxes()
+        {
+            var cellValueData = this.getTextBoxData().Split(",");
+            var cells = this.updateCellValues(cellValueData);
+
+            var puzzle = new Puzzle(PuzzleDimensionSize);
+            puzzle.AddAll(cells);
+
+            var sortedPuzzle = PuzzleCreator.OrderPuzzle(puzzle);
+            this.Puzzle = sortedPuzzle;
         }
 
         private async void loadExitedGame()
@@ -382,10 +395,22 @@ namespace TeamANumbrix.View
             var playerObjectFromXml = (Player)deserializer.Deserialize(inStream);
 
             this.Player = playerObjectFromXml;
+            this.Puzzle = this.Player.CurrentPuzzle;
+            this.resetDisplay();
 
             inStream.Dispose();
         }
 
         #endregion
+
+        private void quitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.savePlayer();
+        }
+
+        private void loadButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.loadExitedGame();
+        }
     }
 }
