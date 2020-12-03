@@ -72,6 +72,13 @@ namespace TeamANumbrix.Model
         /// <summary>
         ///     Initializes a new instance of the <see cref="Cell" /> class.
         /// </summary>
+        public Cell()
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Cell" /> class.
+        /// </summary>
         /// <param name="position">The position.</param>
         /// <param name="value">The value.</param>
         /// <param name="hasCellToNorth">if set to <c>true</c> [has n].</param>
@@ -83,7 +90,8 @@ namespace TeamANumbrix.Model
         ///     or
         ///     value cannot be less than 0
         /// </exception>
-        public Cell(int position, int value, bool hasCellToNorth, bool hasCellToSouth, bool hasCellToEast, bool hasCellToWest)
+        public Cell(int position, int value, bool hasCellToNorth, bool hasCellToSouth, bool hasCellToEast,
+            bool hasCellToWest)
         {
             if (position < 0)
             {

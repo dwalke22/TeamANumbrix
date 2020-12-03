@@ -126,6 +126,7 @@
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Puzzle.cs" />
     <Compile Include="Model\Puzzles.cs" />
+    <Compile Include="Model\PuzzleTimer.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utility\GeneralComparer.cs" />
     <Compile Include="Utility\PuzzleCreator.cs" />

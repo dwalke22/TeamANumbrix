@@ -38,6 +38,13 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="Player" /> class.
         /// </summary>
+        public Player()
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Player" /> class.
+        /// </summary>
         /// <param name="currentPuzzle">The currentPuzzle.</param>
         public Player(Puzzle currentPuzzle)
         {
@@ -57,7 +64,7 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Player" /> class.
+        ///     Initializes a new instance of the <see cref="Player" /> class.
         /// </summary>
         /// <param name="playerName">Name of the player.</param>
         /// <param name="currentPuzzle">The currentPuzzle.</param>

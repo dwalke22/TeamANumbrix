@@ -87,6 +87,7 @@
         <Button x:Name="loadPuzzleButton" Content="Load Puzzle" Margin="790,160,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click" Width="150" Height="50" FontSize="24"/>
         <ListView x:Name="leaderBoardListView" ItemsSource="{Binding Path=HighScores, Mode=TwoWay}" BorderBrush="Black" BorderThickness="2" Width="275" Height="300" Margin="725,265,572,435"/>
         <TextBlock x:Name="puzzleName" HorizontalAlignment="Left" Margin="725,20,0,0" Text="Select A Puzzle To Begin" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="40" FontSize="24"/>
-
+        <Button x:Name="quitButton" Content="Quit" Margin="638,153,0,0" VerticalAlignment="Top" Click="quitButton_Click"/>
+        <Button x:Name="loadButton" Content="Load" Margin="638,209,0,0" VerticalAlignment="Top" Click="loadButton_Click"/>
     </Grid>
 </Page>

@@ -53,12 +53,12 @@ namespace TeamANumbrix.Model
         public int DimensionSize { get; set; }
 
         /// <summary>
-        ///     Gets or sets the timer.
+        ///     Gets or sets the puzzleTimer.
         /// </summary>
         /// <value>
-        ///     The timer.
+        ///     The puzzleTimer.
         /// </value>
-        public Timer Timer { get; set; }
+        public string TimeCompleted { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only.
@@ -76,6 +76,15 @@ namespace TeamANumbrix.Model
         #endregion
 
         #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Puzzle"/> class.
+        /// </summary>
+        public Puzzle()
+        {
+            this.Cells = new List<Cell>();
+            this.PuzzleName = "Puzzle X";
+        }
 
         /// <summary>
         ///     Instantiates a new Puzzle object
@@ -119,14 +128,14 @@ namespace TeamANumbrix.Model
         /// <param name="puzzleName">The name of the puzzle</param>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
-        /// <param name="timer">The timer.</param>
-        public Puzzle(string puzzleName, string unmodifiableCells, int dimensionSize, Timer timer)
+        /// <param name="timeCompleted">The timeCompleted.</param>
+        public Puzzle(string puzzleName, string unmodifiableCells, int dimensionSize, string timeCompleted)
         {
             this.PuzzleName = puzzleName;
             this.Cells = new Collection<Cell>();
             this.UnmodifiableCells = unmodifiableCells;
             this.DimensionSize = dimensionSize;
-            this.Timer = timer;
+            this.TimeCompleted = timeCompleted;
         }
 
         #endregion
