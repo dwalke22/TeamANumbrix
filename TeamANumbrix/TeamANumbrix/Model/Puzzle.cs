@@ -102,7 +102,7 @@ namespace TeamANumbrix.Model
         /// <summary>
         /// Instantiates a new Puzzle object
         /// </summary>
-        /// <param name="name">The name.</param>
+        /// <param name="puzzleName">The name of the puzzle</param>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
         public Puzzle(string puzzleName, string unmodifiableCells, int dimensionSize)
@@ -116,7 +116,7 @@ namespace TeamANumbrix.Model
         /// <summary>
         /// Instantiates a new Puzzle object
         /// </summary>
-        /// <param name="name">The name.</param>
+        /// <param name="puzzleName">The name of the puzzle</param>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
         /// <param name="timer">The timer.</param>
@@ -269,6 +269,12 @@ namespace TeamANumbrix.Model
             }
         }
 
+        /// <summary>
+        ///     Returns a string of the Puzzle Name
+        /// </summary>
+        /// <returns>
+        ///  Returns the puzzle name
+        /// </returns>
         public override string ToString()
         {
             return this.PuzzleName;
