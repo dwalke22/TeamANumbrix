@@ -188,6 +188,11 @@ namespace TeamANumbrix.View
 
         private void handleModifiableCells()
         {
+            if (this.Puzzle == null)
+            {
+                return;
+            }
+
             foreach (var currentCell in this.Puzzle)
             {
                 if (currentCell.IsValueStatic)
@@ -197,19 +202,21 @@ namespace TeamANumbrix.View
 
                 foreach (var textBox in findVisualChildren<TextBox>(Parent))
                 {
-                    if (textBox.Name.Contains("cell"))
+                    if (!textBox.Name.Contains("cell"))
                     {
-                        var textBoxPosition = textBox.Name;
-                        var cellValue = textBoxPosition.Split("cell");
-
-                        if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
-                        {
-                            continue;
-                        }
-
-                        textBox.Text = currentCell.Value.ToString();
-                        textBox.IsReadOnly = true;
+                        continue;
                     }
+
+                    var textBoxPosition = textBox.Name;
+                    var cellValue = textBoxPosition.Split("cell");
+
+                    if (int.Parse(cellValue[1]) + 1 != currentCell.Position)
+                    {
+                        continue;
+                    }
+
+                    textBox.Text = currentCell.Value.ToString();
+                    textBox.IsReadOnly = true;
                 }
             }
         }
@@ -418,11 +425,31 @@ namespace TeamANumbrix.View
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
             this.savePlayer();
+
+            this.displayQuitGameDialog();
+            
         }
 
         private void loadButton_Click(object sender, RoutedEventArgs e)
         {
             this.loadExitedGame();
+        }
+
+        private async void displayQuitGameDialog()
+        {
+            ContentDialog quitGameDialog = new ContentDialog() {
+                Title = "Quit",
+                Content = "Save and Quit game?",
+                PrimaryButtonText = "Save and Quit",
+                SecondaryButtonText = "Cancel"
+            };
+
+            var result = await quitGameDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                Environment.Exit(0);
+            }
         }
     }
 }
