@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 
 namespace TeamANumbrix.Model
 {
+    /// <summary>
+    ///     The puzzle timer class
+    /// </summary>
     public class PuzzleTimer
     {
         /// <summary>
@@ -14,8 +13,14 @@ namespace TeamANumbrix.Model
         /// </summary>
         public DispatcherTimer DispatcherTimer;
 
+        /// <summary>
+        ///     The string representation of the time elapsed 
+        /// </summary>
         public string TimerText;
 
+        /// <summary>
+        ///     Instantiates a new pule timer
+        /// </summary>
         public PuzzleTimer()
         {
         }
@@ -29,6 +34,9 @@ namespace TeamANumbrix.Model
             this.TimerText = "";
         }
 
+        /// <summary>
+        ///     Initializes Timer
+        /// </summary>
         public void initializeTimer()
         {
             this.DispatcherTimer.Interval = TimeSpan.FromSeconds(1);
@@ -40,7 +48,12 @@ namespace TeamANumbrix.Model
         {
             this.TimerText = DateTime.Now.ToLongTimeString();
         }
-
+        
+        /// <summary>
+        ///     
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void timer_Tick(object sender, EventArgs e)
         {
             this.TimerText = DateTime.Now.ToLongTimeString();

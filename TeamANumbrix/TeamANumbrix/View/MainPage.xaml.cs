@@ -28,12 +28,12 @@ namespace TeamANumbrix.View
         /// <summary>
         ///     The default application height
         /// </summary>
-        public const int ApplicationHeight = 800;
+        public const int ApplicationHeight = 900;
 
         /// <summary>
         ///     The default application width
         /// </summary>
-        public const int ApplicationWidth = 1000;
+        public const int ApplicationWidth = 1200;
 
         /// <summary>
         ///     The default dimension size for the puzzle
