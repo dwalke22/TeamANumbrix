@@ -83,11 +83,11 @@
         <Button x:Name="resetButton" Content="Reset" Margin="287,731,0,0" VerticalAlignment="Top" Height="50" Width="90" FontSize="24" Click="resetButton_Click"/>
         <Button x:Name="solvePuzzleButton" Content="Solve" Margin="458,731,0,0" VerticalAlignment="Top" Click="SolvePuzzleButton_Click" Width="90" Height="50" FontSize="24"/>
         <TextBlock x:Name="checkPuzzleTextBlock" HorizontalAlignment="Left" Margin="170,650,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="50" FontSize="36" Padding="90,0,0,0" Visibility="Collapsed"/>
-        <ComboBox x:Name="puzzlePickerComboBox" Margin="725,81,0,0" Width="275" PlaceholderText="Select A Puzzle" FontSize="24" ItemsSource="{Binding Path=Puzzles.AvailablePuzzles.Values, Mode=OneWay}" SelectedItem="{Binding Path=SelectedPuzzle, Mode=TwoWay}" Height="45"/>
-        <Button x:Name="loadPuzzleButton" Content="Load Puzzle" Margin="790,160,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click" Width="150" Height="50" FontSize="24"/>
-        <ListView x:Name="leaderBoardListView" ItemsSource="{Binding Path=HighScores, Mode=TwoWay}" BorderBrush="Black" BorderThickness="2" Width="275" Height="300" Margin="725,265,572,435"/>
+        <ComboBox x:Name="puzzlePickerComboBox" Margin="725,81,0,0" Width="320" PlaceholderText="Select A Puzzle" FontSize="24" ItemsSource="{Binding Path=Puzzles.AvailablePuzzles.Values, Mode=OneWay}" SelectedItem="{Binding Path=SelectedPuzzle, Mode=TwoWay}" Height="45"/>
+        <Button x:Name="loadPuzzleButton" Content="Load Puzzle" Margin="895,155,0,0" VerticalAlignment="Top" Click="LoadPuzzleButton_Click" Width="150" Height="50" FontSize="24"/>
+        <ListView x:Name="leaderBoardListView" ItemsSource="{Binding Path=HighScores, Mode=TwoWay}" BorderBrush="Black" BorderThickness="2" Height="300" Margin="725,300,353,435" Width="325"/>
         <TextBlock x:Name="puzzleName" HorizontalAlignment="Left" Margin="725,20,0,0" Text="Select A Puzzle To Begin" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="40" FontSize="24"/>
-        <Button x:Name="quitButton" Content="Quit" Margin="638,153,0,0" VerticalAlignment="Top" Click="quitButton_Click"/>
-        <Button x:Name="loadButton" Content="Load" Margin="638,209,0,0" VerticalAlignment="Top" Click="loadButton_Click"/>
+        <Button x:Name="quitButton" Content="Quit" Margin="725,155,0,0" VerticalAlignment="Top" Click="quitButton_Click" Width="150" Height="50" FontSize="24"/>
+        <Button x:Name="loadButton" Content="Load" Margin="810,220,0,0" VerticalAlignment="Top" Click="loadButton_Click" Width="150" Height="51" FontSize="24"/>
     </Grid>
 </Page>
