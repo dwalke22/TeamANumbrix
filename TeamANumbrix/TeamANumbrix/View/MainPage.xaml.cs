@@ -61,10 +61,10 @@ namespace TeamANumbrix.View
         public Puzzles Puzzles { get; set; }
 
         /// <summary>
-        /// Gets or sets the leaderboard.
+        ///     Gets or sets the leaderboard.
         /// </summary>
         /// <value>
-        /// The leader.
+        ///     The leader.
         /// </value>
         public LeaderBoard LeaderBoard { get; set; }
 
@@ -74,10 +74,10 @@ namespace TeamANumbrix.View
         public Stopwatch Timer { get; }
 
         /// <summary>
-        /// Gets or sets the name of the player.
+        ///     Gets or sets the name of the player.
         /// </summary>
         /// <value>
-        /// The name of the player.
+        ///     The name of the player.
         /// </value>
         public Player Player { get; set; }
 
@@ -244,7 +244,7 @@ namespace TeamANumbrix.View
 
         private void handleAddHighScore()
         {
-            var puzzle = (Puzzle)this.puzzlePickerComboBox.SelectedValue;
+            var puzzle = (Puzzle) this.puzzlePickerComboBox.SelectedValue;
 
             if (puzzle != null)
             {
@@ -411,23 +411,21 @@ namespace TeamANumbrix.View
             var inStream = await theFile.OpenStreamForReadAsync();
 
             var deserializer = new XmlSerializer(typeof(Player));
-            var playerObjectFromXml = (Player)deserializer.Deserialize(inStream);
+            var playerObjectFromXml = (Player) deserializer.Deserialize(inStream);
 
             this.Player = playerObjectFromXml;
             this.Puzzle = this.Player.CurrentPuzzle;
+            
             this.resetDisplay();
 
             inStream.Dispose();
         }
-
-        #endregion
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
             this.savePlayer();
 
             this.displayQuitGameDialog();
-            
         }
 
         private void loadButton_Click(object sender, RoutedEventArgs e)
@@ -437,7 +435,7 @@ namespace TeamANumbrix.View
 
         private async void displayQuitGameDialog()
         {
-            ContentDialog quitGameDialog = new ContentDialog() {
+            var quitGameDialog = new ContentDialog {
                 Title = "Quit",
                 Content = "Save and Quit game?",
                 PrimaryButtonText = "Save and Quit",
@@ -451,5 +449,7 @@ namespace TeamANumbrix.View
                 Environment.Exit(0);
             }
         }
+
+        #endregion
     }
 }

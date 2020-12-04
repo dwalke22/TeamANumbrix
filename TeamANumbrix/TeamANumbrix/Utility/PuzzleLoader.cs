@@ -7,7 +7,7 @@ using TeamANumbrix.Model;
 namespace TeamANumbrix.Utility
 {
     /// <summary>
-    ///  The Puzzle Loader class
+    ///     The Puzzle Loader class
     /// </summary>
     public class PuzzleLoader
     {
@@ -45,6 +45,7 @@ namespace TeamANumbrix.Utility
         #endregion
 
         #region Methods
+
         /// <summary>
         ///     Loads and reads the selected puzzle file
         /// </summary>

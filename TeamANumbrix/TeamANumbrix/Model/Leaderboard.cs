@@ -25,7 +25,7 @@ namespace TeamANumbrix.Model
         /// <summary>
         ///     The Collection of high scores
         /// </summary>
-        public ICollection<HighScore> HighScores => highscores;
+        public ICollection<HighScore> HighScores => this.highscores;
 
         /// <summary>
         ///     Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"></see>.
@@ -229,7 +229,6 @@ namespace TeamANumbrix.Model
         }
 
         /// <summary>
-        /// 
         /// </summary>
         public void sortByHighScore()
         {

@@ -1,8 +1,7 @@
-﻿
-namespace TeamANumbrix.Model
+﻿namespace TeamANumbrix.Model
 {
     /// <summary>
-    /// The HighScore Class
+    ///     The HighScore Class
     /// </summary>
     public class HighScore
     {
@@ -37,7 +36,7 @@ namespace TeamANumbrix.Model
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HighScore"/> class.
+        ///     Initializes a new instance of the <see cref="HighScore" /> class.
         /// </summary>
         public HighScore()
         {
@@ -58,6 +57,8 @@ namespace TeamANumbrix.Model
 
         #endregion
 
+        #region Methods
+
         /// <summary>
         ///     A string representation of the high score
         /// </summary>
@@ -66,5 +67,7 @@ namespace TeamANumbrix.Model
         {
             return $"{this.PlayerName}: {this.TimeRecord} Puzzle {this.PuzzleNumber}";
         }
+
+        #endregion
     }
 }

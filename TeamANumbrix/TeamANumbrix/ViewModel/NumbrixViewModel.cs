@@ -12,44 +12,44 @@ namespace TeamANumbrix.ViewModel
     /// </summary>
     public class NumbrixViewModel : INotifyPropertyChanged
     {
+        #region Data members
+
         private LeaderBoard leaderBoard;
 
-        private Puzzles puzzles;
+        private Puzzle selectedPuzzle;
+
+        private ObservableCollection<HighScore> highScores;
+
+        #endregion
+
+        #region Properties
 
         public RelayCommand SolvePuzzle { get; set; }
 
         /// <summary>
         ///     The collection of puzzles
         /// </summary>
-        public Puzzles Puzzles
-        {
-            get { return puzzles; }
-            set { puzzles = value; }
-        }
-
-        private Puzzle selectedPuzzle;
+        public Puzzles Puzzles { get; set; }
 
         /// <summary>
         ///     The Selected Puzzle property
         /// </summary>
         public Puzzle SelectedPuzzle
         {
-            get { return selectedPuzzle; }
+            get => this.selectedPuzzle;
             set
             {
-                selectedPuzzle = value; 
+                this.selectedPuzzle = value;
                 this.OnPropertyChanged();
             }
         }
-
-        private ObservableCollection<HighScore> highScores;
 
         /// <summary>
         ///     The high score property
         /// </summary>
         public ObservableCollection<HighScore> HighScores
         {
-            get { return this.highScores; }
+            get => this.highScores;
             set
             {
                 this.highScores = value;
@@ -57,16 +57,28 @@ namespace TeamANumbrix.ViewModel
             }
         }
 
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         ///     Instantiates a new View Model object
         /// </summary>
         public NumbrixViewModel()
         {
-            this.puzzles = new Puzzles();
+            this.Puzzles = new Puzzles();
             this.leaderBoard = new LeaderBoard();
-            this.SolvePuzzle = new RelayCommand(solvePuzzle, canSolvePuzzle);
+            this.SolvePuzzle = new RelayCommand(this.solvePuzzle, this.canSolvePuzzle);
         }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        ///     The Property changed event
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private bool canSolvePuzzle()
         {
@@ -75,16 +87,9 @@ namespace TeamANumbrix.ViewModel
 
         private void solvePuzzle()
         {
-
         }
 
         /// <summary>
-        ///     The Property changed event
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="propertyName"></param>
         [NotifyPropertyChangedInvocator]
@@ -92,5 +97,7 @@ namespace TeamANumbrix.ViewModel
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

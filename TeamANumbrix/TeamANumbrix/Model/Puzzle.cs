@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
 
 namespace TeamANumbrix.Model
 {
@@ -29,10 +28,10 @@ namespace TeamANumbrix.Model
         public int Count => this.Cells.Count;
 
         /// <summary>
-        /// Gets or sets the name of the puzzle.
+        ///     Gets or sets the name of the puzzle.
         /// </summary>
         /// <value>
-        /// The name of the puzzle.
+        ///     The name of the puzzle.
         /// </value>
         public string PuzzleName { get; set; }
 
@@ -78,7 +77,7 @@ namespace TeamANumbrix.Model
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Puzzle"/> class.
+        ///     Initializes a new instance of the <see cref="Puzzle" /> class.
         /// </summary>
         public Puzzle()
         {
@@ -97,7 +96,7 @@ namespace TeamANumbrix.Model
         }
 
         /// <summary>
-        /// Instantiates a new Puzzle object
+        ///     Instantiates a new Puzzle object
         /// </summary>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
         /// <param name="dimensionSize">Size of the dimension.</param>
@@ -109,7 +108,7 @@ namespace TeamANumbrix.Model
         }
 
         /// <summary>
-        /// Instantiates a new Puzzle object
+        ///     Instantiates a new Puzzle object
         /// </summary>
         /// <param name="puzzleName">The name of the puzzle</param>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
@@ -123,7 +122,7 @@ namespace TeamANumbrix.Model
         }
 
         /// <summary>
-        /// Instantiates a new Puzzle object
+        ///     Instantiates a new Puzzle object
         /// </summary>
         /// <param name="puzzleName">The name of the puzzle</param>
         /// <param name="unmodifiableCells">The puzzle identifier.</param>
@@ -282,7 +281,7 @@ namespace TeamANumbrix.Model
         ///     Returns a string of the Puzzle Name
         /// </summary>
         /// <returns>
-        ///  Returns the puzzle name
+        ///     Returns the puzzle name
         /// </returns>
         public override string ToString()
         {

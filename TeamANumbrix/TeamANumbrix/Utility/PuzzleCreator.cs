@@ -2,7 +2,6 @@
 using System.Linq;
 using TeamANumbrix.Model;
 
-
 namespace TeamANumbrix.Utility
 {
     /// <summary>
@@ -10,10 +9,16 @@ namespace TeamANumbrix.Utility
     /// </summary>
     public class PuzzleCreator
     {
+        #region Data members
+
         /// <summary>
-        /// The size of the puzzle
+        ///     The size of the puzzle
         /// </summary>
         public const int PuzzleDimensionSize = 8;
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         ///     Creates a puzzle
@@ -27,14 +32,12 @@ namespace TeamANumbrix.Utility
             var sortedList = sortedPuzzle.ToList();
 
             var modifiedPuzzle = setUnmodifiableCells(stats, sortedList);
-         
 
             return modifiedPuzzle;
         }
 
         private static Puzzle setUnmodifiableCells(IEnumerable<string> stats, IList<Cell> cells)
         {
-    
             foreach (var unmodifiableCell in stats)
             {
                 var cellData = unmodifiableCell.Split('|');
@@ -42,8 +45,9 @@ namespace TeamANumbrix.Utility
                 var position = int.Parse(cellData[0]);
                 var value = int.Parse(cellData[1]);
 
-                cells[position-1].Value = value;
+                cells[position - 1].Value = value;
             }
+
             var puzzle = new Puzzle(PuzzleDimensionSize);
             puzzle.AddAll(cells);
             var orderedPuzzle = OrderPuzzle(puzzle);
@@ -52,10 +56,10 @@ namespace TeamANumbrix.Utility
         }
 
         /// <summary>
-        /// Creates the blank puzzle based on the PuzzleDimensionSize public constant;
+        ///     Creates the blank puzzle based on the PuzzleDimensionSize public constant;
         /// </summary>
         /// <returns>
-        /// A blank puzzle
+        ///     A blank puzzle
         /// </returns>
         public static Puzzle CreateBlankPuzzle()
         {
@@ -108,7 +112,6 @@ namespace TeamANumbrix.Utility
             const int topRightPosition = PuzzleDimensionSize;
             const int bottomRightPosition = PuzzleDimensionSize * PuzzleDimensionSize;
             const int bottomLeftPosition = bottomRightPosition - PuzzleDimensionSize + 1;
-            
 
             var topLeftCell = new Cell(topLeftPosition, 0, false, true, true, false);
             var topRightCell = new Cell(topRightPosition, 0, false, true, false, true);
@@ -211,5 +214,6 @@ namespace TeamANumbrix.Utility
             return middleCells;
         }
 
+        #endregion
     }
 }

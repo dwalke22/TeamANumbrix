@@ -8,6 +8,8 @@ namespace TeamANumbrix.Extension
     /// </summary>
     public static class ListExtension
     {
+        #region Methods
+
         /// <summary>
         ///     Converts a list to on observable collection
         /// </summary>
@@ -18,5 +20,7 @@ namespace TeamANumbrix.Extension
         {
             return new ObservableCollection<T>(collection);
         }
+
+        #endregion
     }
 }

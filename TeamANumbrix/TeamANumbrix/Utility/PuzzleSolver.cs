@@ -9,10 +9,16 @@ namespace TeamANumbrix.Utility
     /// </summary>
     public class PuzzleSolver
     {
+        #region Properties
+
         /// <summary>
         ///     The Puzzle
         /// </summary>
         public Puzzle Puzzle { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         ///     Instantiates a new Puzzle solver object
@@ -22,6 +28,10 @@ namespace TeamANumbrix.Utility
         {
             this.Puzzle = puzzle;
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         ///     Determines if the puzzle has been solved
@@ -45,7 +55,8 @@ namespace TeamANumbrix.Utility
                 {
                     return false;
                 }
-                firstPosition = cells[nextPosition-1];
+
+                firstPosition = cells[nextPosition - 1];
                 checkWinCounter++;
                 if (checkWinCounter == counterSize - 1)
                 {
@@ -82,6 +93,7 @@ namespace TeamANumbrix.Utility
                     nextPosition = cellPosition - this.Puzzle.DimensionSize;
                 }
             }
+
             if (currentCell.HasCellToSouth)
             {
                 if (this.checkSouthValue(currentCell))
@@ -89,6 +101,7 @@ namespace TeamANumbrix.Utility
                     nextPosition = cellPosition + this.Puzzle.DimensionSize;
                 }
             }
+
             if (currentCell.HasCellToEast)
             {
                 if (this.checkEastValue(currentCell))
@@ -96,6 +109,7 @@ namespace TeamANumbrix.Utility
                     nextPosition = cellPosition + 1;
                 }
             }
+
             if (currentCell.HasCellToWest)
             {
                 if (this.checkWestValue(currentCell))
@@ -174,5 +188,7 @@ namespace TeamANumbrix.Utility
 
             return isNextPositionWest;
         }
+
+        #endregion
     }
 }

@@ -8,15 +8,21 @@ namespace TeamANumbrix.Model
     /// </summary>
     public class PuzzleTimer
     {
+        #region Data members
+
         /// <summary>
-        /// The dispatcher timer
+        ///     The dispatcher timer
         /// </summary>
         public DispatcherTimer DispatcherTimer;
 
         /// <summary>
-        ///     The string representation of the time elapsed 
+        ///     The string representation of the time elapsed
         /// </summary>
         public string TimerText;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         ///     Instantiates a new pule timer
@@ -26,13 +32,17 @@ namespace TeamANumbrix.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PuzzleTimer"/> class.
+        ///     Initializes a new instance of the <see cref="PuzzleTimer" /> class.
         /// </summary>
         public PuzzleTimer(DispatcherTimer timer)
-        { 
+        {
             this.DispatcherTimer = timer;
             this.TimerText = "";
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         ///     Initializes Timer
@@ -48,15 +58,16 @@ namespace TeamANumbrix.Model
         {
             this.TimerText = DateTime.Now.ToLongTimeString();
         }
-        
+
         /// <summary>
-        ///     
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             this.TimerText = DateTime.Now.ToLongTimeString();
         }
+
+        #endregion
     }
 }
