@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using TeamANumbrix.Annotations;
+using TeamANumbrix.Extension;
 using TeamANumbrix.Model;
 using TeamANumbrix.Utility;
 
@@ -23,7 +24,9 @@ namespace TeamANumbrix.ViewModel
         #endregion
 
         #region Properties
-
+        /// <summary>
+        ///     Command to solve the puzzle
+        /// </summary>
         public RelayCommand SolvePuzzle { get; set; }
 
         /// <summary>
@@ -68,6 +71,7 @@ namespace TeamANumbrix.ViewModel
         {
             this.Puzzles = new Puzzles();
             this.leaderBoard = new LeaderBoard();
+            this.highScores = this.leaderBoard.HighScores.ToObservableCollection();
             this.SolvePuzzle = new RelayCommand(this.solvePuzzle, this.canSolvePuzzle);
         }
 
